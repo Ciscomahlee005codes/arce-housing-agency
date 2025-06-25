@@ -1,38 +1,43 @@
-import Footer from './Components/Footer/Footer'
-import NavBar from './Components/NavBar/NavBar'
-import Home from "./Pages/Home/Home"
-import ViewHomes from './Pages/VHomes/ViewHomes'
-import About from './Pages/AboutUs/About'
-import { Routes, Route } from 'react-router-dom'
-import Contact from './Pages/Contact/Contact'
-import RentHistory from './Pages/RentHistory/RentHistory'
-import ProfilePage from './Pages/Home/ProfilePage/ProfilePage'
-import HomeDetails from './Components/HomeDetails/HomeDetails'
-import LodgeDetails from './Components/LodgeDetails/LodgeDetails'
-import FaqPage from './Pages/FaqPage/FaqPage'
-import TestPage from './Pages/TestPage/TestPage'
+import React, { Suspense } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import NavBar from './Components/NavBar/NavBar';
+import Footer from './Components/Footer/Footer';
+import Loader from './Components/Loader/Loader'; // Your custom loader
+import DelayLoader from './Components/Loader/DelayLoader'; 
+
+// Lazy-loaded pages
+const Home = DelayLoader(() => import("./Pages/Home/Home"));
+const ViewHomes = DelayLoader(() => import("./Pages/VHomes/ViewHomes"));
+const About = DelayLoader(() => import("./Pages/AboutUs/About"));
+const Contact = DelayLoader(() => import("./Pages/Contact/Contact"));
+const RentHistory = DelayLoader(() => import("./Pages/RentHistory/RentHistory"));
+const ProfilePage = DelayLoader(() => import("./Pages/Home/ProfilePage/ProfilePage"));
+const HomeDetails = DelayLoader(() => import("./Components/HomeDetails/HomeDetails"));
+const LodgeDetails = DelayLoader(() => import("./Components/LodgeDetails/LodgeDetails"));
+const FaqPage = DelayLoader(() => import("./Pages/FaqPage/FaqPage"));
+const TestPage = DelayLoader(() => import("./Pages/TestPage/TestPage"));
 
 function App() {
-
-
   return (
     <div className='app-container'>
-      <NavBar />
-      <Routes>
-        <Route path='/' element={<Home />} />
-         <Route path='/viewHomes' element={<ViewHomes />} />
+      <Suspense fallback={<Loader />}>
+       <NavBar />
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/viewHomes' element={<ViewHomes />} />
           <Route path='/aboutUs' element={<About />} />
           <Route path='/contactUs' element={<Contact />} />
           <Route path='/rentalHistory' element={<RentHistory />} />
-           <Route path="/viewHomes/:id" element={<HomeDetails />} />
-           <Route path="/lodge/:id" element={<LodgeDetails />} />
+          <Route path="/viewHomes/:id" element={<HomeDetails />} />
+          <Route path="/lodge/:id" element={<LodgeDetails />} />
           <Route path='/profile' element={<ProfilePage />} />
           <Route path='/faq' element={<FaqPage />} />
           <Route path='/testimonials' element={<TestPage />} />
-      </Routes>
-      <Footer />
+        </Routes>
+        <Footer />
+      </Suspense>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
