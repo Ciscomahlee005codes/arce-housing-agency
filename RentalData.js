@@ -1,0 +1,32 @@
+export const rentalHistoryData = [
+  {
+    date: "2025-04-22",
+    time: "2:30 PM",
+    tourStatus: "Completed",
+    rentalStatus: "Successful Rental",
+    propertyName: "3 Bedroom Duplex",
+    location: "Trans Ekulu, Enugu",
+    flatType: "3 Bedroom",
+    agent: "James Udoh",
+  },
+  {
+    date: "2025-05-02",
+    time: "11:00 AM",
+    tourStatus: "Completed",
+    rentalStatus: "Not Rented",
+    propertyName: "Self Contain Lodge",
+    location: "Gariki, Enugu",
+    flatType: "Self Contain",
+    agent: "Nnenna Chuka",
+  },
+  {
+    date: "2025-05-05",
+    time: "3:15 PM",
+    tourStatus: "Pending",
+    rentalStatus: "—",
+    propertyName: "2 Bedroom Flat",
+    location: "Abakpa Nike",
+    flatType: "2 Bedroom",
+    agent: "Chisom Ejike",
+  },
+];

@@ -1,0 +1,123 @@
+.footer {
+  background-color: #111;
+  color: #fff;
+  padding: 40px 20px 20px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: auto;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ffffff30;
+}
+
+.footer-column h3,
+.footer-column h4 {
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+  color: #fff;
+}
+.footer-column h3{
+  letter-spacing: 5px;
+  font-size: 22px;
+}
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  color: #ccc;
+  transition: color 0.3s ease;
+}
+
+.footer-column ul li:hover {
+  color: #5a57ff;
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+  font-size: 1.2rem;
+}
+
+.social-icons svg {
+  cursor: pointer;
+  color: #ccc;
+  transition: color 0.3s;
+}
+
+.social-icons svg:hover {
+  color: #5a57ff;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.85rem;
+  color: #ccc;
+}
+.small-container{
+  display: none;
+}
+@media (max-width: 834px) {
+  .footer {
+  background-color: #efefef;
+  color: #1d1c1c;
+  padding: 40px 20px 20px;
+  font-family: 'Montserrat', sans-serif;
+}
+  #big-footer{
+    display: none;
+  }
+  .small-container{
+  display: block;
+}
+.footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 35px;
+  font-size: 0.85rem;
+  color: #222121;
+}
+.social-icons svg {
+  cursor: pointer;
+  color: #222121;
+  transition: color 0.3s;
+}
+
+}
+@media (max-width: 430px) {
+  .footer {
+  background-color: #efefef;
+  color: #1d1c1c;
+  padding: 10px;
+  font-family: 'Montserrat', sans-serif;
+}
+  #big-footer{
+    display: none;
+  }
+  .small-container{
+  display: block;
+}
+.footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 65px;
+  font-size: 0.85rem;
+  color: #222121;
+}
+.social-icons svg {
+  cursor: pointer;
+  color: #222121;
+  transition: color 0.3s;
+}
+
+}

@@ -1,0 +1,129 @@
+/* Container */
+.profile {
+  background: #f8f9fc;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 2rem 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.profile-container {
+  width: 100%;
+  max-width: 500px;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  padding: 2rem 1.5rem;
+}
+
+/* Image and Name */
+.img-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.img-wrapper {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: #e3e3e3;
+  border: 3px solid #160053;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.upload-icon {
+  font-size: 24px;
+  color: #555;
+}
+
+.username {
+  margin-top: 1rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #160053;
+}
+
+/* Menu List */
+.menu-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.menu-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  background: #f7f7fb;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  transition: background 0.3s;
+}
+
+.menu-link:hover {
+  background: #ebebf5;
+}
+
+.menu-icon {
+  font-size: 18px;
+  color: #160053;
+}
+
+.logout {
+  margin-top: 2rem;
+}
+
+.logout .menu-link {
+  background-color: #fff0f0;
+  color: crimson;
+  border: 1px solid crimson;
+}
+
+.logout .menu-link:hover {
+  background-color: #ffe3e3;
+}
+.hide-on-small {
+  display: none;
+}
+/* Responsive */
+@media (max-width: 884px) {
+  .hide-on-small {
+  display: block;
+}
+}
+@media (max-width: 480px) {
+  .profile-container {
+    padding: 1.5rem 1rem;
+  }
+
+  .username {
+    font-size: 1.2rem;
+  }
+
+  .img-wrapper {
+    width: 100px;
+    height: 100px;
+  }
+}
