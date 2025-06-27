@@ -35,72 +35,91 @@ export const house_List = [
     rating: 3.5,
     state: 'Enugu State',
     location: "Abakpa Nike",
+    rent: '₦2,000,000 per Year',
+    description: "Spacious duplex with four bedrooms, parking space, and modern interior finishes."
   },
   {
     id: 2,
-    name: "Top Floor Studio 2 rooms",
+    name: "2 Bedrooms Flat",
     image: House5,
     rating: 4.7,
-     state: 'Rivers State',
+    state: 'Rivers State',
     location: "Peter Odili RD, PH",
+    rent: "₦650,000 per Year",
+    description: "Affordable and cozy 2-bedroom flat in a peaceful neighborhood."
   },
   {
     id: 3,
     name: "Max Mansion",
     image: House4,
     rating: 4.7,
-     state: 'Enugu State',
+    state: 'Enugu State',
     location: "Trans Ekulu",
+    rent: '₦550,000 per Year',
+    description: "Elegant mansion with luxury finishes and a serene environment."
   },
-   {
+  {
     id: 4,
-    name: "2 Bedroom Bungolow",
+    name: "2 Bedroom Bungalow",
     image: House7,
     rating: 4.7,
-     state: 'Enugu State',
+    state: 'Enugu State',
     location: "Achara Layout",
+    rent: '₦450,000 per Year',
+    description: "Well-maintained bungalow with 2 bedrooms and fenced compound."
   },
-   {
+  {
     id: 5,
     name: "Self Contain",
     image: House8,
     rating: 4.7,
-     state: 'Enugu State',
+    state: 'Enugu State',
     location: "Gariki",
+    rent: '₦250,000 per Year',
+    description: "Compact self-contained apartment suitable for students or singles."
   },
-    {
+  {
     id: 6,
     name: "4 Bedroom Bungalow",
     image: House10,
     rating: 4.7,
-     state: 'Enugu',
+    state: 'Enugu',
     location: "9th Mile Corner",
+    rent: '₦3,500,000 per Year',
+    description: "Luxurious 4-bedroom bungalow with tiled floors and secured gates."
   },
-    {
+  {
     id: 7,
     name: "3 Bedroom Flat",
     image: House11,
     rating: 4.7,
-     state: 'Anambra State',
+    state: 'Anambra State',
     location: "Awada Obosi",
+    rent: '₦450,000 per Year',
+    description: "Spacious 3-bedroom flat with balcony, kitchen, and 2 bathrooms."
   },
-    {
+  {
     id: 8,
     name: "4 Bedroom Duplex",
     image: House12,
     rating: 4.7,
-     state: 'Rivers State',
+    state: 'Rivers State',
     location: "G.R.A Portharcourt",
+    rent: '₦450,000 per Year',
+    description: "Modern duplex in a highbrow area with ample space and parking."
   },
-    {
+  {
     id: 9,
     name: "3 Bedroom Duplex",
     image: House13,
     rating: 4.7,
-     state: 'Enugu State',
+    state: 'Enugu State',
     location: "Indepence Layout",
-  },
+    rent: '₦450,000 per Year',
+    description: "Well-furnished duplex with 3 bedrooms and easy access to town."
+  }
 ];
+
 
 export const lodge_List = [
   {
@@ -110,94 +129,118 @@ export const lodge_List = [
     rating: 3.5,
     state: 'Enugu State',
     location: "Agbani Akpugo (ESUT)",
+    rent: '₦250,000 per Year',
+    description: "Comfortable 1-bedroom apartment close to ESUT campus."
   },
   {
     id: 2,
     name: "Self Contain",
     image: Lodge2,
     rating: 4,
-     state: 'Enugu State',
+    state: 'Enugu State',
     location: "Achara Layout (UNEC Area)",
+    rent: '₦350,000 per Year',
+    description: "Secure and well-ventilated self contain, ideal for students."
   },
   {
     id: 3,
     name: "Self Contain",
     image: Lodge3,
     rating: 3.7,
-     state: 'Enugu State',
+    state: 'Enugu State',
     location: "Trans Ekulu",
+    rent: '₦200,000 per Year',
+    description: "Budget-friendly unit in a quiet, residential area."
   },
- 
-   {
+  {
     id: 4,
     name: "2 Bedroom Apartment",
     image: Lodge4,
     rating: 4.7,
-     state: 'Enugu State',
+    state: 'Enugu State',
     location: "Gariki",
+    rent: '₦450,000 per Year',
+    description: "Two bedrooms, living room, kitchen and easy access to main road."
   },
-    {
+  {
     id: 5,
     name: "Self Contain Lodge",
     image: Lodge5,
     rating: 4.7,
-     state: 'Enugu State',
+    state: 'Enugu State',
     location: "IMT Enugu",
+    rent: '₦200,000 per Year',
+    description: "Walking distance to IMT; includes kitchenette and bathroom."
   },
-    {
+  {
     id: 6,
     name: "1 Bedroom Apartment",
     image: Lodge6,
     rating: 4.7,
-     state: 'Enugu State',
+    state: 'Enugu State',
     location: "New Layout",
+    rent: '₦400,000 per Year',
+    description: "Newly renovated with tiled floors and borehole water supply."
   },
-    {
+  {
     id: 7,
-    name: "A Shared 2 Bedroom Flat Apartment",
+    name: "Shared 2 Bedroom Flat",
     image: Lodge7,
     rating: 3,
-     state: 'Anambra State',
+    state: 'Anambra State',
     location: "Onitsha",
+    rent: '₦250,000 per Year',
+    description: "Shared flat with individual rooms and shared facilities."
   },
-   {
+  {
     id: 8,
-    name: " 1 Bedroom Flat Apartment",
+    name: "1 Bedroom Flat",
     image: Lodge8,
     rating: 4,
-     state: 'Enugu State',
+    state: 'Enugu State',
     location: "Abakpa Nike",
+    rent: '₦350,000 per Year',
+    description: "Fully fenced 1-bedroom apartment with constant power supply."
   },
-   {
+  {
     id: 9,
-    name: " 1 Bedroom Flat Apartment",
+    name: "1 Bedroom Flat",
     image: Lodge9,
     rating: 4,
-     state: 'Enugu State',
+    state: 'Enugu State',
     location: "Iva-Valley",
+    rent: '₦350,000 per Year',
+    description: "Standard apartment in a peaceful neighborhood with security."
   },
-   {
+  {
     id: 10,
     name: "Self Container",
     image: Lodge10,
     rating: 4,
-     state: 'Rivers State',
+    state: 'Rivers State',
     location: "Trans Amadi",
+    rent: '₦250,000 per Year',
+    description: "Ideal for single tenants, comes with modern fittings."
   },
-   {
+  {
     id: 11,
-    name: " 1 Bedroom Flat Apartment",
+    name: "1 Bedroom Flat",
     image: Lodge11,
     rating: 2,
-     state: 'Enugu State',
+    state: 'Enugu State',
     location: "Thinkers Corner",
+    rent: '₦200,000 per Year',
+    description: "Basic but functional apartment close to bus routes."
   },
-   {
+  {
     id: 12,
-    name: " 1 Bedroom Flat Apartment",
+    name: "1 Bedroom Flat",
     image: Lodge12,
     rating: 3.5,
-     state: 'Enugu State',
+    state: 'Enugu State',
     location: "Emene",
-  } 
+    rent: '₦420,000 per Year',
+    description: "Tiled, ventilated and affordable housing for singles or couples."
+  }
 ];
+

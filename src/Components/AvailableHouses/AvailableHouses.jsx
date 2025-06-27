@@ -43,6 +43,7 @@ const AvailableHouses = () => {
                 <h3 className="house-name">{house.name}</h3>
                 <p className="house-category">State: {house.state}</p>
                 <p className="house-category">Location: {house.location}</p>
+                <p className="house-category">Annual Rent: {house.rent}</p>
                 <div className="house-rating">{renderStars(house.rating)}</div>
               </div>
               <div className="card-btn">
