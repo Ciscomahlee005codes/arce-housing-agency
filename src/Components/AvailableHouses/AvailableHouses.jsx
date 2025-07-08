@@ -34,7 +34,7 @@ const AvailableHouses = () => {
   return (
     <section className="available-houses">
       <div className="container">
-        <h2 className="section-title">Available Homes</h2>
+        <h2 className="section-title">Featured Homes</h2>
         <div className="houses-grid">
           {house_List.slice(0, 3).map((house) => (
             <div key={house.id} className="house-card">

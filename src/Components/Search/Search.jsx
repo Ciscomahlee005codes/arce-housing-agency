@@ -86,11 +86,13 @@ const Search = () => {
     <div className="container" id="searchBar">
       <div className="searchBar searchBar-new">
         <button
-          className="filter-icon-button"
-          onClick={() => setShowFilters(!showFilters)}
-        >
-          <FaSliders />
-        </button>
+  className="filter-icon-button"
+  onClick={() => setShowFilters(!showFilters)}
+  title={showFilters ? "Hide Filters" : "Show Filters"} 
+>
+ <FaSliders />
+</button>
+
 
         <input
           type="text"

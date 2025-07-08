@@ -4,7 +4,7 @@ import { IoMdNotifications } from "react-icons/io";
 import { FaBell, FaHistory } from "react-icons/fa";
 import { FaCircleUser } from "react-icons/fa6";
 import { AiFillHome } from "react-icons/ai";
-import { GiHouse } from "react-icons/gi";
+import { BsBuildingsFill } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
@@ -38,7 +38,7 @@ const NavBar = () => {
         </NavLink>
 
         <NavLink to='/viewHomes' className="nav-item">
-          <GiHouse className="nav-icon" />
+          <BsBuildingsFill className="nav-icon" />
           <span>View Homes</span>
         </NavLink>
 

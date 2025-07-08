@@ -4,6 +4,7 @@ import NavBar from './Components/NavBar/NavBar';
 import Footer from './Components/Footer/Footer';
 import Loader from './Components/Loader/Loader'; // Your custom loader
 import DelayLoader from './Components/Loader/DelayLoader'; 
+import ScrollToTop from './Components/ScrollTop/ScrollToTop';
 
 // Lazy-loaded pages
 const Home = DelayLoader(() => import("./Pages/Home/Home"));
@@ -22,6 +23,8 @@ function App() {
     <div className='app-container'>
       <Suspense fallback={<Loader />}>
        <NavBar />
+
+       <ScrollToTop />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/viewHomes' element={<ViewHomes />} />
