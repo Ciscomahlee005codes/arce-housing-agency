@@ -1,12 +1,49 @@
 import React, { useState } from "react";
 import "./RentalHistory.css";
-import { rentalHistoryData } from "../../../RentalData";
+import { rentalHistoryData as originalData } from "../../../RentalData";
 
 const RentalHistory = () => {
   const [feedbackState, setFeedbackState] = useState({});
   const [ratings, setRatings] = useState({});
   const [reviews, setReviews] = useState({});
   const [submittedFeedback, setSubmittedFeedback] = useState({});
+  const [rescheduleState, setRescheduleState] = useState({});
+  const [rescheduleData, setRescheduleData] = useState({});
+
+  // Add more data for demonstration
+  const rentalHistoryData = [
+    ...originalData,
+    {
+      date: "2025-07-10",
+      time: "2:00 PM",
+      tourStatus: "Pending",
+      rentalStatus: "—",
+      propertyName: "Sunrise Villa",
+      location: "Ikoyi",
+      flatType: "3 Bedroom",
+      agent: "Agent Tunde",
+    },
+    {
+      date: "2025-07-08",
+      time: "11:00 AM",
+      tourStatus: "Completed",
+      rentalStatus: "Not Rented",
+      propertyName: "Cozy Nest",
+      location: "Lekki",
+      flatType: "Studio",
+      agent: "Agent Rose",
+    },
+    {
+      date: "2025-07-06",
+      time: "9:30 AM",
+      tourStatus: "Pending",
+      rentalStatus: "—",
+      propertyName: "Royal Court",
+      location: "Ajah",
+      flatType: "Mini Flat",
+      agent: "Agent Emeka",
+    },
+  ];
 
   const toggleFeedback = (index) => {
     if (submittedFeedback[index]) return;
@@ -25,15 +62,39 @@ const RentalHistory = () => {
   };
 
   const submitFeedback = (index) => {
-  const agentName = rentalHistoryData[index].agent;
-  const rating = ratings[index];
+    const agentName = rentalHistoryData[index].agent;
+    const rating = ratings[index];
+    alert(`✅ Feedback submitted:\nAgent: ${agentName}\nRating: ${rating} star${rating > 1 ? "s" : ""}`);
+    setFeedbackState((prev) => ({ ...prev, [index]: false }));
+    setSubmittedFeedback((prev) => ({ ...prev, [index]: true }));
+  };
 
-  alert(`✅ Feedback submitted:\nAgent: ${agentName}\nRating: ${rating} star${rating > 1 ? "s" : ""}`);
+  const toggleReschedule = (index) => {
+    setRescheduleState((prev) => ({ ...prev, [index]: !prev[index] }));
+    setRescheduleData((prev) => ({
+      ...prev,
+      [index]: {
+        date: rentalHistoryData[index].date,
+        time: rentalHistoryData[index].time,
+      },
+    }));
+  };
 
-  setFeedbackState((prev) => ({ ...prev, [index]: false }));
-  setSubmittedFeedback((prev) => ({ ...prev, [index]: true }));
-};
+  const handleRescheduleChange = (index, field, value) => {
+    setRescheduleData((prev) => ({
+      ...prev,
+      [index]: {
+        ...prev[index],
+        [field]: value,
+      },
+    }));
+  };
 
+  const submitReschedule = (index) => {
+    const { date, time } = rescheduleData[index];
+    alert(`📅 Tour rescheduled to ${date} at ${time}`);
+    setRescheduleState((prev) => ({ ...prev, [index]: false }));
+  };
 
   const renderStarsInput = (index) => {
     const selected = ratings[index] || 0;
@@ -89,15 +150,19 @@ const RentalHistory = () => {
                   <td data-label="Agent">{item.agent}</td>
                   <td>
                     {item.tourStatus === "Completed" && !submittedFeedback[index] && (
-                      <button
-                        className="feedback-btn"
-                        onClick={() => toggleFeedback(index)}
-                      >
+                      <button className="feedback-btn" onClick={() => toggleFeedback(index)}>
                         {feedbackState[index] ? "Cancel" : "Leave Feedback"}
                       </button>
                     )}
-                    {submittedFeedback[index] && (
-                      <span className="feedback-done">✅ Feedback Sent</span>
+                    {submittedFeedback[index] && <span className="feedback-done">✅ Feedback Sent</span>}
+                    {item.tourStatus === "Pending" && (
+                      <button
+                        className="feedback-btn"
+                        style={{ backgroundColor: "#00791d", marginTop: "0.3rem" }}
+                        onClick={() => toggleReschedule(index)}
+                      >
+                        {rescheduleState[index] ? "Cancel" : "Reschedule"}
+                      </button>
                     )}
                   </td>
                 </tr>
@@ -120,6 +185,38 @@ const RentalHistory = () => {
                           className="submit-review"
                         >
                           Submit Feedback
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                )}
+
+                {rescheduleState[index] && (
+                  <tr>
+                    <td colSpan="9">
+                      <div className="feedback-form">
+                        <p><strong>Reschedule Tour:</strong></p>
+                        <label>
+                          New Date:
+                          <input
+                            type="date"
+                            value={rescheduleData[index]?.date || ""}
+                            onChange={(e) => handleRescheduleChange(index, "date", e.target.value)}
+                          />
+                        </label>
+                        <label>
+                          New Time:
+                          <input
+                            type="time"
+                            value={rescheduleData[index]?.time || ""}
+                            onChange={(e) => handleRescheduleChange(index, "time", e.target.value)}
+                          />
+                        </label>
+                        <button
+                          onClick={() => submitReschedule(index)}
+                          className="submit-review"
+                        >
+                          Confirm Reschedule
                         </button>
                       </div>
                     </td>

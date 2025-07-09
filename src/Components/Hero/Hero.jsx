@@ -15,37 +15,38 @@ const heroSlides = [
     background: "/House-4.jpg",
     title: "Find Your Next Home with",
     brand: "ARCE Housing Agency",
-    desc: "Easily explore verified rental apartments suited to your budget, lifestyle, and location. Comfort is just a few clicks away.",
+    desc: "No more agent wahala! Browse verified rentals that fit your pocket and your lifestyle. Peace of mind starts here.",
   },
   {
     id: 2,
     background: "/House-6.jpg",
     title: "Rent Smarter. Live Better",
     brand: "ARCE Housing Agency",
-    desc: "Whether you're looking for a shop, shared space, or family-sized apartment, ARCE makes finding the perfect rental simple and fast.",
+    desc: "From self-cons to family flats, ARCE makes house-finding easy, sharp sharp — no long story.",
   },
   {
     id: 3,
     background: "/House-8.jpg",
     title: "Stress-Free Renting Starts With",
     brand: "ARCE Housing Agency",
-    desc: "We’ve removed the guesswork. Get matched with clean, affordable, and trusted homes — all available to rent instantly.",
+    desc: "We don clear road for you. Verified houses, affordable prices — no hidden wahala.",
   },
   {
     id: 4,
     background: "/House-12.jpg",
     title: "Your Ideal Home Is Just Around the Corner —",
     brand: "ARCE Housing Agency",
-    desc: "From short stays to long-term leases, discover flexible rental options that fit your journey and your budget.",
+    desc: "Short stay or long lease, ARCE get you covered. Just pick, pay, and pack in with ease.",
   },
   {
     id: 5,
     background: "/House-13.jpg",
     title: "Apartments You Can Trust, From",
     brand: "ARCE Housing Agency",
-    desc: "Say goodbye to house-hunting stress. Browse listings with real photos, clear pricing, and verified landlords — all in one place.",
+    desc: "Say bye-bye to fake listings. What you see is what you get — trusted landlords, clear prices, real homes.",
   },
 ];
+
 
 
   return (

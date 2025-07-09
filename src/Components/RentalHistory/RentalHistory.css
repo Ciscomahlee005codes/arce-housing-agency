@@ -163,6 +163,44 @@
   border-radius: 6px;
   cursor: pointer;
 }
+/* ---------------- RESCHEDULE STYLING ---------------- */
+
+.feedback-form label {
+  display: block;
+  margin: 0.6rem 0 0.3rem;
+  font-size: 0.95rem;
+  color: #160053;
+  font-weight: 600;
+}
+
+.feedback-form input[type="date"],
+.feedback-form input[type="time"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: 0.8rem;
+  font-family: inherit;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+.feedback-form .submit-review {
+  background-color: #00791d;
+  font-size: 0.9rem;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.feedback-form .submit-review:hover {
+  background-color: #005a16;
+  color: white !important;
+}
 
 @media (max-width: 768px) {
   .history-table {
