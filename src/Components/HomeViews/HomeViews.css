@@ -163,3 +163,9 @@
     width: 90%;
   }
 }
+@media (max-width: 500px) {
+  .home-swiper-wrapper .swiper-button-next,
+.home-swiper-wrapper .swiper-button-prev {
+  display: none;
+}
+}
