@@ -11,7 +11,7 @@ const CustomerService = ({ onClose }) => {
         <p>Choose how you’d like to reach ARCE Support:</p>
 
         <div className="help-options">
-          <a href="https://wa.me/2348101234567" target="_blank" rel="noreferrer" className="help-card">
+          <a href="https://wa.me/2348121269433" target="_blank" rel="noreferrer" className="help-card">
             <span>💬</span>
             <div>
               <h4>WhatsApp Chat</h4>
