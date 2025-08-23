@@ -1,10 +1,12 @@
 import React, { Suspense } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import NavBar from './Components/NavBar/NavBar';
 import Footer from './Components/Footer/Footer';
-import Loader from './Components/Loader/Loader'; // Your custom loader
+import Loader from './Components/Loader/Loader'; 
 import DelayLoader from './Components/Loader/DelayLoader'; 
 import ScrollToTop from './Components/ScrollTop/ScrollToTop';
+import LogInPage from './Pages/LogInPage/LogInPage';
+import DashboardHomePage from './UserDashboardPages/DashboardHomePage/DashboardHomePage';
 
 // Lazy-loaded pages
 const Home = DelayLoader(() => import("./Pages/Home/Home"));
@@ -19,25 +21,37 @@ const FaqPage = DelayLoader(() => import("./Pages/FaqPage/FaqPage"));
 const TestPage = DelayLoader(() => import("./Pages/TestPage/TestPage"));
 
 function App() {
-  return (
-    <div className='app-container'>
-      <Suspense fallback={<Loader />}>
-       <NavBar />
+  const location = useLocation();
+   const hiddenRoutes = ["/login", "/dashboard/Home"];
+    const hideNavAndFooter = hiddenRoutes.includes(location.pathname);
 
-       <ScrollToTop />
+  return (
+    <div className="app-container">
+      <Suspense fallback={<Loader />}>
+        <ScrollToTop />
+
+        {/* Only show NavBar when not on login */}
+        {!hideNavAndFooter && <NavBar />}
+
         <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/viewHomes' element={<ViewHomes />} />
-          <Route path='/aboutUs' element={<About />} />
-          <Route path='/contactUs' element={<Contact />} />
-          <Route path='/rentalHistory' element={<RentHistory />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/viewHomes" element={<ViewHomes />} />
+          <Route path="/aboutUs" element={<About />} />
+          <Route path="/contactUs" element={<Contact />} />
+          <Route path="/rentalHistory" element={<RentHistory />} />
           <Route path="/viewHomes/:id" element={<HomeDetails />} />
           <Route path="/lodge/:id" element={<LodgeDetails />} />
-          <Route path='/profile' element={<ProfilePage />} />
-          <Route path='/faq' element={<FaqPage />} />
-          <Route path='/testimonials' element={<TestPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/faq" element={<FaqPage />} />
+          <Route path="/testimonials" element={<TestPage />} />
+          <Route path="/login" element={<LogInPage />} />
+
+          {/* Dashboard Routes */}
+           <Route path="/dashboard/Home" element={<DashboardHomePage />} />
         </Routes>
-        <Footer />
+
+        {/* Only show Footer when not on login */}
+        {!hideNavAndFooter && <Footer />}
       </Suspense>
     </div>
   );

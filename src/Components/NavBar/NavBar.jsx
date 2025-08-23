@@ -28,7 +28,7 @@ const NavBar = () => {
           <NavLink to='/contactUs' id="link">Contact Us</NavLink>
         </ul>
         <FaBell id="bell-icon" />
-        <button onClick={()=> navigate('/profile')}>Sign Up</button>
+        <button onClick={()=> navigate('/login')}>Sign Up</button>
       </div>
       {/* Bottom Mobile Nav */}
       <div className="bottom-navbar">

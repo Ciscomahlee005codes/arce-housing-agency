@@ -1,0 +1,112 @@
+.dashboard {
+  margin-left: 260px; /* adjust if sidebar width changes */
+  padding: 20px;
+  background: #f5f6fa;
+  min-height: 100vh;
+}
+
+.dashboard-header {
+  margin-bottom: 20px;
+}
+
+.dashboard-header h2 {
+  margin: 0;
+  font-size: 1.6rem;
+  color: #0d47a1;
+}
+
+.dashboard-header p {
+  color: #555;
+  margin-top: 5px;
+}
+
+/* Stats Cards */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.card h3 {
+  margin: 0;
+  font-size: 1.4rem;
+  color: #0d47a1;
+}
+
+.card p {
+  color: #555;
+  margin-top: 8px;
+}
+
+/* Main Grid */
+.main-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+}
+
+/* Chart placeholder */
+.chart-card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.chart-placeholder {
+  background: #e3f2fd;
+  border: 2px dashed #0d47a1;
+  border-radius: 10px;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0d47a1;
+  font-weight: bold;
+}
+
+/* Side card */
+.side-card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.side-card h3 {
+  margin-bottom: 12px;
+  color: #0d47a1;
+}
+
+.side-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.side-card ul li {
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 0.95rem;
+  color: #444;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .main-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard {
+    margin-left: 0; /* sidebar will overlay on mobile */
+  }
+}
