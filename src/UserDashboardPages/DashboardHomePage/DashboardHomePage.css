@@ -19,4 +19,11 @@
     margin-left: 0;
     width: 100%;
   }
+  .middle-level{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 30px;
+  padding: 20px;
+}
 }

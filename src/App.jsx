@@ -9,6 +9,8 @@ import LogInPage from './Pages/LogInPage/LogInPage';
 import DashboardHomePage from './UserDashboardPages/DashboardHomePage/DashboardHomePage';
 import PropertiesPage from './UserDashboardPages/PropertiesPage/PropertiesPage';
 import RentalTourPage from './UserDashboardPages/RentalTourPage/RentalTourPage';
+import RequestPage from './UserDashboardPages/RequestPage/RequestPage';
+import NotificationPage from './UserDashboardPages/NotificationPage/NotificationPage';
 
 // Lazy-loaded pages
 const Home = DelayLoader(() => import("./Pages/Home/Home"));
@@ -24,7 +26,9 @@ const TestPage = DelayLoader(() => import("./Pages/TestPage/TestPage"));
 
 function App() {
   const location = useLocation();
-   const hiddenRoutes = ["/login", "/dashboard/Home", "/dashboard/Property", "/dashboard/RentalPage"];
+   const hiddenRoutes = ["/login", "/dashboard/Home", 
+    "/dashboard/Property", "/dashboard/RentalPage",
+     "/dashboard/Request", "/dashboard/notification"];
     const hideNavAndFooter = hiddenRoutes.includes(location.pathname);
 
   return (
@@ -52,6 +56,8 @@ function App() {
            <Route path="/dashboard/Home" element={<DashboardHomePage />} />
             <Route path="/dashboard/Property" element={<PropertiesPage />} />
             <Route path="/dashboard/RentalPage" element={<RentalTourPage />} />
+            <Route path="/dashboard/Request" element={<RequestPage />} />
+            <Route path="/dashboard/notification" element={<NotificationPage />} />
         </Routes>
 
         {/* Only show Footer when not on login */}

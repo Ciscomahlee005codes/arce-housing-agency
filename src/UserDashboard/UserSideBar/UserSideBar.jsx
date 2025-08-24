@@ -61,7 +61,7 @@ const UserSideBar = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/requests" className="link">
+            <NavLink to="/dashboard/Request" className="link">
               <FaClipboardList /> Requests
             </NavLink>
           </li>
@@ -71,7 +71,7 @@ const UserSideBar = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/notifications" className="link">
+            <NavLink to="/dashboard/notification" className="link">
               <FaBell /> Notifications
             </NavLink>
           </li>
