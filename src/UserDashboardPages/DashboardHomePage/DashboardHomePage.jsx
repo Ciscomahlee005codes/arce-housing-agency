@@ -1,14 +1,24 @@
 import React from 'react'
-// import "./DashboardHomePage.css"
+import "./DashboardHomePage.css"
 import UserSideBar from '../../UserDashboard/UserSideBar/UserSideBar'
-import DashboardHome from '../../UserDashboard/DashboardHome/DashboardHome'
+import UserProperties from '../../UserDashboard/UserProperties/UserProperties'
+import DashboardTop from '../../UserDashboard/DashboardHome/DashboardTop'
+import UserRequest from '../../UserDashboard/UserRequest/UserRequest'
+import Agents from '../../UserDashboard/UserChats/Agents'
+import UserActivity from '../../UserDashboard/UserActivity/UserActivity'
 
 const DashboardHomePage = () => {
   return (
     <div className='dashboard-layout'>
       <UserSideBar />
       <div className="dashboard-content">
-        <DashboardHome />
+        <DashboardTop />
+         <UserActivity />
+        <UserProperties />
+        <div className="middle-level">
+          <UserRequest />
+          <Agents />
+        </div>
       </div>
     </div>
   )

@@ -36,28 +36,23 @@ const UserSideBar = () => {
         {/* User Info */}
         <div className="user-info">
           <h3>Anthony Raphael</h3>
-          <p className="role">Tenant</p>
+          <p className="role">Agent</p>
         </div>
 
         <ul>
           <li>
-            <NavLink to="/dashboard" className="link">
+            <NavLink to="/dashboard/Home" className="link">
               <FaTachometerAlt /> Dashboard
             </NavLink>
           </li>
           <li>
-            <NavLink to="/browse" className="link">
+            <NavLink to="/dashboard/Property" className="link">
               <FaHome /> Browse Properties
             </NavLink>
           </li>
           <li>
-            <NavLink to="/bookings" className="link">
-              <FaHistory /> My Bookings
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/payments" className="link">
-              <FaMoneyBill /> Payments/ Invoice
+            <NavLink to="/dashboard/RentalPage" className="link">
+              <FaHistory /> Rental History/House Tours
             </NavLink>
           </li>
           <li>
