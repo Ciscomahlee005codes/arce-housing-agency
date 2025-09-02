@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import LogInPicture from "../../assets/House-4.jpg"
 import './Login.css';
 
 const Login = () => {
@@ -12,14 +11,16 @@ const Login = () => {
     phone: '',
     password: '',
     confirmPassword: '',
-    role: 'developer',
-    skills: '',
-    experience: '',
-    github: '',
+    role: 'tenant',
+    preferredLocation: '',
+    budget: '',
+    propertyType: '',
+    agencyName: '',
+    licenseNumber: '',
+    serviceAreas: '',
     companyName: '',
-    hiringFor: '',
-    availability: '',
-    yearsExperience: ''
+    propertyLocation: '',
+    landlordPropertyType: ''
   });
   const [isLoading, setIsLoading] = useState(false);
 
@@ -36,14 +37,16 @@ const Login = () => {
       phone: '',
       password: '',
       confirmPassword: '',
-      role: 'developer',
-      skills: '',
-      experience: '',
-      github: '',
+      role: 'tenant',
+      preferredLocation: '',
+      budget: '',
+      propertyType: '',
+      agencyName: '',
+      licenseNumber: '',
+      serviceAreas: '',
       companyName: '',
-      hiringFor: '',
-      availability: '',
-      yearsExperience: ''
+      propertyLocation: '',
+      landlordPropertyType: ''
     });
     setIsLoginForm(prev => !prev);
   };
@@ -80,36 +83,59 @@ const Login = () => {
     });
   };
 
-  // Renders role-specific inputs
+  // Role-specific fields
   const renderRoleFields = () => {
     switch (formData.role) {
-      case 'developer':
+      case 'agent':
         return (
           <>
-            <input name="skills" type="text" placeholder="Skills (comma separated)" value={formData.skills} onChange={handleInputChange} />
-            <input name="experience" type="text" placeholder="Experience Level" value={formData.experience} onChange={handleInputChange} />
-            <input name="github" type="text" placeholder="GitHub/Portfolio URL" value={formData.github} onChange={handleInputChange} />
+            <input
+              name="agencyName"
+              type="text"
+              placeholder="Agency Name"
+              value={formData.agencyName}
+              onChange={handleInputChange}
+            />
+            <input
+              name="licenseNumber"
+              type="text"
+              placeholder="License Number"
+              value={formData.licenseNumber}
+              onChange={handleInputChange}
+            />
+            <input
+              name="serviceAreas"
+              type="text"
+              placeholder="Service Areas (City/State)"
+              value={formData.serviceAreas}
+              onChange={handleInputChange}
+            />
           </>
         );
-      case 'mentor':
+      case 'landlord':
         return (
           <>
-            <input name="skills" type="text" placeholder="Mentoring Skills" value={formData.skills} onChange={handleInputChange} />
-            <input name="yearsExperience" type="number" placeholder="Years of Experience" value={formData.yearsExperience} onChange={handleInputChange} />
-            <input name="availability" type="text" placeholder="Availability (e.g., 5 hrs/week)" value={formData.availability} onChange={handleInputChange} />
-          </>
-        );
-      case 'recruiter':
-        return (
-          <>
-            <input name="companyName" type="text" placeholder="Company Name" value={formData.companyName} onChange={handleInputChange} />
-            <input name="hiringFor" type="text" placeholder="Hiring For (Role/Skills)" value={formData.hiringFor} onChange={handleInputChange} />
-          </>
-        );
-      case 'admin':
-        return (
-          <>
-            <p style={{ fontSize: '0.85rem', color: '#888' }}>Admins will be verified by the Mentra team.</p>
+            <input
+              name="companyName"
+              type="text"
+              placeholder="Company/Business Name (optional)"
+              value={formData.companyName}
+              onChange={handleInputChange}
+            />
+            <input
+              name="propertyLocation"
+              type="text"
+              placeholder="Property Location"
+              value={formData.propertyLocation}
+              onChange={handleInputChange}
+            />
+            <input
+              name="landlordPropertyType"
+              type="text"
+              placeholder="Property Type (Residential/Commercial)"
+              value={formData.landlordPropertyType}
+              onChange={handleInputChange}
+            />
           </>
         );
       default:
@@ -133,9 +159,25 @@ const Login = () => {
               className="form-box"
             >
               <h2>Welcome Back to ARCE</h2>
-              <input name="email" type="email" placeholder="Email" value={formData.email} onChange={handleInputChange} />
-              <input name="password" type="password" placeholder="Password" value={formData.password} onChange={handleInputChange} />
-              <button className="primary-btn" onClick={handleLogin} disabled={isLoading}>
+              <input
+                name="email"
+                type="email"
+                placeholder="Email"
+                value={formData.email}
+                onChange={handleInputChange}
+              />
+              <input
+                name="password"
+                type="password"
+                placeholder="Password"
+                value={formData.password}
+                onChange={handleInputChange}
+              />
+              <button
+                className="primary-btn"
+                onClick={handleLogin}
+                disabled={isLoading}
+              >
                 {isLoading ? 'Logging in...' : 'Sign In'}
               </button>
               <p onClick={handleToggleForm}>
@@ -152,24 +194,62 @@ const Login = () => {
               className="form-box"
             >
               <h2>Create an Account on ARCE</h2>
-              <input name="fullName" type="text" placeholder="Full Name" value={formData.fullName} onChange={handleInputChange} />
-              <input name="email" type="email" placeholder="Email" value={formData.email} onChange={handleInputChange} />
-              <input name="phone" type="tel" placeholder="Phone Number" value={formData.phone} onChange={handleInputChange} />
-              <input name="password" type="password" placeholder="Password" value={formData.password} onChange={handleInputChange} />
-              <input name="confirmPassword" type="password" placeholder="Confirm Password" value={formData.confirmPassword} onChange={handleInputChange} />
+              <input
+                name="fullName"
+                type="text"
+                placeholder="Full Name"
+                value={formData.fullName}
+                onChange={handleInputChange}
+              />
+              <input
+                name="email"
+                type="email"
+                placeholder="Email"
+                value={formData.email}
+                onChange={handleInputChange}
+              />
+              <input
+                name="phone"
+                type="tel"
+                placeholder="Phone Number"
+                value={formData.phone}
+                onChange={handleInputChange}
+              />
+              <input
+                name="password"
+                type="password"
+                placeholder="Password"
+                value={formData.password}
+                onChange={handleInputChange}
+              />
+              <input
+                name="confirmPassword"
+                type="password"
+                placeholder="Confirm Password"
+                value={formData.confirmPassword}
+                onChange={handleInputChange}
+              />
 
               {/* Role Selection */}
-              <select name="role" value={formData.role} onChange={handleInputChange} className="role-select">
-                <option value="developer">Developer</option>
-                <option value="mentor">Mentor</option>
-                <option value="recruiter">Recruiter</option>
-                <option value="admin">Admin</option>
+              <select
+                name="role"
+                value={formData.role}
+                onChange={handleInputChange}
+                className="role-select"
+              >
+                <option value="tenant">Tenant</option>
+                <option value="agent">Agent</option>
+                <option value="landlord">Landlord</option>
               </select>
 
               {/* Role Specific Fields */}
               {renderRoleFields()}
 
-              <button className="primary-btn" onClick={handleSignUp} disabled={isLoading}>
+              <button
+                className="primary-btn"
+                onClick={handleSignUp}
+                disabled={isLoading}
+              >
                 {isLoading ? 'Signing up...' : 'Sign Up'}
               </button>
               <p onClick={handleToggleForm}>
