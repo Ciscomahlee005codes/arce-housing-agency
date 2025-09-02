@@ -10,7 +10,7 @@ const DashboardTop = () => {
   return (
     <div className="main-top">
       <div className="dashboard-top">
-        {/* Search bar */}
+        {/* Left Side - Search */}
         <div className="search-bar">
           <FiSearch className="icon" />
           <input type="text" placeholder="Search listings, tenants..." />
@@ -19,16 +19,18 @@ const DashboardTop = () => {
           </button>
         </div>
 
-        {/* Actions */}
+        {/* Right Side - Actions */}
         <div className="top-actions">
           <div className="t-icons">
             <MdMessage className="top-icon" />
             <IoMdNotifications className="top-icon" />
           </div>
-
           <div className="user-data">
             <FaUser className="user-icon" />
-            <h3>Welcome, User</h3>
+            <div className="user-info">
+              <h4>Jide Anderson</h4>
+              <span>Enugu, Agent</span>
+            </div>
           </div>
         </div>
       </div>

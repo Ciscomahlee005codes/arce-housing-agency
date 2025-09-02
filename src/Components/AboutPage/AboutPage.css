@@ -37,7 +37,9 @@
   font-size: 16.5px;
   line-height: 1.7;
 }
-
+.about-section ul{
+  margin-top: 20px;
+}
 .about-list {
   list-style: none;
   padding-left: 0;

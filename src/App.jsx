@@ -11,6 +11,8 @@ import PropertiesPage from './UserDashboardPages/PropertiesPage/PropertiesPage';
 import RentalTourPage from './UserDashboardPages/RentalTourPage/RentalTourPage';
 import RequestPage from './UserDashboardPages/RequestPage/RequestPage';
 import NotificationPage from './UserDashboardPages/NotificationPage/NotificationPage';
+import ProfileSettings from './Components/ProfileSettings/ProfileSettings';
+import Notification from './Components/Notification/Notification';
 
 // Lazy-loaded pages
 const Home = DelayLoader(() => import("./Pages/Home/Home"));
@@ -50,6 +52,8 @@ function App() {
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/faq" element={<FaqPage />} />
           <Route path="/testimonials" element={<TestPage />} />
+          <Route path="/profileSettings" element={<ProfileSettings />} />
+          <Route path="/userNotification" element={<Notification />} />
           <Route path="/login" element={<LogInPage />} />
 
           {/* Dashboard Routes */}

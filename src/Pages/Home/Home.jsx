@@ -9,6 +9,7 @@ import Testimonial from '../../Components/Testimonial/Testimonial'
 import CustomerService from '../../Components/CustomerService/CustomerService'
 import customerServiceImg from '../../assets/customer-service.png'
 import './Home.css'
+import Objectives from '../../Components/Objectives/Objectives'
 
 
 const Home = () => {
@@ -17,6 +18,7 @@ const Home = () => {
     <div>
       <Search />
       <Hero />
+      <Objectives />
       <AvailableHouses />
       <Lodges />
       <FAQ isStandalone={false} />

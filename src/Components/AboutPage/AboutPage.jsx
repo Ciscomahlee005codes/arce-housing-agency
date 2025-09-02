@@ -18,6 +18,12 @@ const AboutPage = () => {
           To simplify the housing experience through speed, transparency, and trust.
           We believe every Nigerian deserves a hassle-free journey to finding a home.
         </p>
+        <ul>
+          <li>✅ Eliminate stress from house hunting in Nigeria.</li>
+          <li>✅ Create a secure platform for renting and leasing.</li>
+          <li>✅ Promote transparency and fair pricing.</li>
+          <li>✅ Empower landlords, agents, and tenants with tech tools.</li>
+        </ul>
       </div>
 
       <div className="about-section">
