@@ -12,21 +12,20 @@ const Login = () => {
     password: '',
     confirmPassword: '',
     role: 'tenant',
-<<<<<<< HEAD
-    propertyAddress: '',
-    schoolName: '',
-    agencyName: ''
-=======
+    // tenant
     preferredLocation: '',
     budget: '',
     propertyType: '',
-    agencyName: '',
-    licenseNumber: '',
-    serviceAreas: '',
+    // student
+    schoolName: '',
+    // landlord
     companyName: '',
     propertyLocation: '',
-    landlordPropertyType: ''
->>>>>>> e6d54d685bcebbbd46b711faa9399fc01a707428
+    landlordPropertyType: '',
+    // agent
+    agencyName: '',
+    licenseNumber: '',
+    serviceAreas: ''
   });
   const [isLoading, setIsLoading] = useState(false);
 
@@ -44,21 +43,16 @@ const Login = () => {
       password: '',
       confirmPassword: '',
       role: 'tenant',
-<<<<<<< HEAD
-      propertyAddress: '',
-      schoolName: '',
-      agencyName: ''
-=======
       preferredLocation: '',
       budget: '',
       propertyType: '',
-      agencyName: '',
-      licenseNumber: '',
-      serviceAreas: '',
+      schoolName: '',
       companyName: '',
       propertyLocation: '',
-      landlordPropertyType: ''
->>>>>>> e6d54d685bcebbbd46b711faa9399fc01a707428
+      landlordPropertyType: '',
+      agencyName: '',
+      licenseNumber: '',
+      serviceAreas: ''
     });
     setIsLoginForm(prev => !prev);
   };
@@ -95,14 +89,34 @@ const Login = () => {
     });
   };
 
-<<<<<<< HEAD
+  // Role-specific fields
   const renderRoleFields = () => {
     switch (formData.role) {
       case 'tenant':
         return (
-          <p style={{ fontSize: '0.9rem', color: '#666' }}>
-            Sign up to find your perfect home.
-          </p>
+          <>
+            <input
+              name="preferredLocation"
+              type="text"
+              placeholder="Preferred Location"
+              value={formData.preferredLocation}
+              onChange={handleInputChange}
+            />
+            <input
+              name="budget"
+              type="number"
+              placeholder="Budget"
+              value={formData.budget}
+              onChange={handleInputChange}
+            />
+            <input
+              name="propertyType"
+              type="text"
+              placeholder="Property Type"
+              value={formData.propertyType}
+              onChange={handleInputChange}
+            />
+          </>
         );
       case 'student':
         return (
@@ -113,55 +127,6 @@ const Login = () => {
             value={formData.schoolName}
             onChange={handleInputChange}
           />
-        );
-      case 'landlord':
-        return (
-          <input
-            name="propertyAddress"
-            type="text"
-            placeholder="Property Address"
-            value={formData.propertyAddress}
-            onChange={handleInputChange}
-          />
-        );
-      case 'agent':
-        return (
-          <input
-            name="agencyName"
-            type="text"
-            placeholder="Agency/Company Name"
-            value={formData.agencyName}
-            onChange={handleInputChange}
-          />
-=======
-  // Role-specific fields
-  const renderRoleFields = () => {
-    switch (formData.role) {
-      case 'agent':
-        return (
-          <>
-            <input
-              name="agencyName"
-              type="text"
-              placeholder="Agency Name"
-              value={formData.agencyName}
-              onChange={handleInputChange}
-            />
-            <input
-              name="licenseNumber"
-              type="text"
-              placeholder="License Number"
-              value={formData.licenseNumber}
-              onChange={handleInputChange}
-            />
-            <input
-              name="serviceAreas"
-              type="text"
-              placeholder="Service Areas (City/State)"
-              value={formData.serviceAreas}
-              onChange={handleInputChange}
-            />
-          </>
         );
       case 'landlord':
         return (
@@ -188,7 +153,32 @@ const Login = () => {
               onChange={handleInputChange}
             />
           </>
->>>>>>> e6d54d685bcebbbd46b711faa9399fc01a707428
+        );
+      case 'agent':
+        return (
+          <>
+            <input
+              name="agencyName"
+              type="text"
+              placeholder="Agency Name"
+              value={formData.agencyName}
+              onChange={handleInputChange}
+            />
+            <input
+              name="licenseNumber"
+              type="text"
+              placeholder="License Number"
+              value={formData.licenseNumber}
+              onChange={handleInputChange}
+            />
+            <input
+              name="serviceAreas"
+              type="text"
+              placeholder="Service Areas (City/State)"
+              value={formData.serviceAreas}
+              onChange={handleInputChange}
+            />
+          </>
         );
       default:
         return null;
@@ -244,11 +234,7 @@ const Login = () => {
               transition={{ duration: 0.5 }}
               className="form-box"
             >
-<<<<<<< HEAD
-              <h2>Create an Account</h2>
-=======
               <h2>Create an Account on ARCE</h2>
->>>>>>> e6d54d685bcebbbd46b711faa9399fc01a707428
               <input
                 name="fullName"
                 type="text"
@@ -285,10 +271,7 @@ const Login = () => {
                 onChange={handleInputChange}
               />
 
-<<<<<<< HEAD
-=======
               {/* Role Selection */}
->>>>>>> e6d54d685bcebbbd46b711faa9399fc01a707428
               <select
                 name="role"
                 value={formData.role}
@@ -296,14 +279,9 @@ const Login = () => {
                 className="role-select"
               >
                 <option value="tenant">Tenant</option>
-<<<<<<< HEAD
                 <option value="student">Student</option>
                 <option value="landlord">Landlord</option>
                 <option value="agent">Agent</option>
-=======
-                <option value="agent">Agent</option>
-                <option value="landlord">Landlord</option>
->>>>>>> e6d54d685bcebbbd46b711faa9399fc01a707428
               </select>
 
               {renderRoleFields()}
