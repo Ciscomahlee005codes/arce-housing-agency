@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Lodges.css';
 import { FaLongArrowAltRight } from "react-icons/fa";
-import { lodge_List } from '../../../house_List';
+import { lodge_List, sharedRoom_List, hostel_List } from '../../../house_List';
 import { useNavigate } from 'react-router-dom'; 
 
 const renderStars = (rating) => {
@@ -26,35 +26,86 @@ const renderStars = (rating) => {
 
 const Lodges = () => {
   const navigate = useNavigate();
+  const [activeTab, setActiveTab] = useState("Lodges"); // default is lodges
 
   const handleViewDetails = (id) => {
-    navigate(`/lodge/${id}`);
+    if (activeTab === "Lodges") {
+      navigate(`/lodge/${id}`);
+    } else if (activeTab === "Shared Rooms") {
+      navigate(`/sharedroom/${id}`);
+    } else if (activeTab === "Hostels") {
+      navigate(`/hostel/${id}`);
+    }
   };
+
+  // pick which list to render
+  const displayedList = 
+    activeTab === "Lodges" ? lodge_List : 
+    activeTab === "Shared Rooms" ? sharedRoom_List : 
+    hostel_List;
 
   return (
     <div>
       <section className="available-houses">
         <div className="container">
-          <h2 className="section-title">Lodges For Students</h2>
+          <h2 className="section-title">Featured For Students</h2>
+
+          {/* Filter Buttons */}
+          <div className="filter-buttons">
+            <button 
+              className={activeTab === "Lodges" ? "active" : ""} 
+              onClick={() => setActiveTab("Lodges")}
+            >
+              Lodges
+            </button>
+            <button 
+              className={activeTab === "Shared Rooms" ? "active" : ""} 
+              onClick={() => setActiveTab("Shared Rooms")}
+            >
+              Shared Rooms
+            </button>
+            <button 
+              className={activeTab === "Hostels" ? "active" : ""} 
+              onClick={() => setActiveTab("Hostels")}
+            >
+              Hostels
+            </button>
+          </div>
+
           <div className="houses-grid">
-            {lodge_List.slice(0, 3).map((lodge) => (
-              <div key={lodge.id} className="house-card">
-                <img src={lodge.image} alt={lodge.name} className="house-image" />
+            {displayedList.slice(0, 3).map((item) => (
+              <div key={item.id} className="house-card">
+                <img src={item.image} alt={item.name} className="house-image" />
                 <div className="house-info">
-                  <h3 className="house-name">{lodge.name}</h3>
-                  <p className="house-category">State: {lodge.state}</p>
-                  <p className="house-category">Location: {lodge.location}</p>
-                   <p className="house-category">Annual Rent: {lodge.rent}</p>
-                  <div className="house-rating">{renderStars(lodge.rating)}</div>
+                  <h3 className="house-name">{item.name}</h3>
+                  <p className="house-category">State: {item.state}</p>
+                  <p className="house-category">Location: {item.location}</p>
+                  <p className="house-category">Annual Rent: {item.rent}</p>
+                  <div className="house-rating">{renderStars(item.rating)}</div>
                 </div>
                 <div className="card-btn">
-                  <button onClick={() => handleViewDetails(lodge.id)}>View Details</button> 
+                  <button onClick={() => handleViewDetails(item.id)}>View Details</button> 
                 </div>
               </div>
             ))}
           </div>
+
           <div className="btn-container">
-            <button onClick={()=> navigate('/viewHomes')}>View More Lodges <FaLongArrowAltRight id='right-arrow' /></button>
+            {activeTab === "Lodges" && (
+              <button onClick={() => navigate('/viewHomes')}>
+                View More Lodges <FaLongArrowAltRight id='right-arrow' />
+              </button>
+            )}
+            {activeTab === "Shared Rooms" && (
+              <button onClick={() => navigate('/viewHomes')}>
+                View More Shared Rooms <FaLongArrowAltRight id='right-arrow' />
+              </button>
+            )}
+            {activeTab === "Hostels" && (
+              <button onClick={() => navigate('/viewHomes')}>
+                View More Hostels <FaLongArrowAltRight id='right-arrow' />
+              </button>
+            )}
           </div>
         </div>
       </section>

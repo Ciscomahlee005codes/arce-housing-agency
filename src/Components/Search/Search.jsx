@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { FaSliders } from "react-icons/fa6";
-import { house_List, lodge_List } from "../../../house_List";
+import { house_List, lodge_List, sharedRoom_List, hostel_List } from "../../../house_List";
 import { useNavigate } from "react-router-dom";
 import "./Search.css";
 
@@ -20,7 +20,13 @@ const Search = () => {
     "By Rent",
   ];
 
-  const allProperties = [...house_List, ...lodge_List];
+  // ✅ Include hostel_List
+  const allProperties = [
+    ...house_List.map((h) => ({ ...h, type: "house" })),
+    ...lodge_List.map((l) => ({ ...l, type: "lodge" })),
+    ...sharedRoom_List.map((s) => ({ ...s, type: "shared" })),
+    ...hostel_List.map((hs) => ({ ...hs, type: "hostel" })),
+  ];
 
   const handleCategorySelect = (cat) => {
     setCategory(cat);
@@ -51,11 +57,16 @@ const Search = () => {
           return item.name.toLowerCase().includes(lowerQuery);
 
         case "By House Type": {
-          const type = house_List.some((h) => h.id === item.id)
-            ? "house"
-            : lodge_List.some((l) => l.id === item.id)
-            ? "lodge"
-            : "";
+          const type =
+            house_List.some((h) => h.id === item.id)
+              ? "house"
+              : lodge_List.some((l) => l.id === item.id)
+              ? "lodge"
+              : sharedRoom_List.some((s) => s.id === item.id)
+              ? "shared"
+              : hostel_List.some((hs) => hs.id === item.id)
+              ? "hostel"
+              : "";
           return type.includes(lowerQuery);
         }
 
@@ -74,25 +85,31 @@ const Search = () => {
 
     setFilteredItems(results);
   };
+
   const navigate = useNavigate();
 
   const handleSelectItem = (item) => {
-    const isHouse = house_List.some((h) => h.id === item.id);
-    const path = isHouse ? `/viewHomes/${item.id}` : `/lodge/${item.id}`;
-    navigate(path);
+    if (item.type === "house") {
+      navigate(`/viewHomes/${item.id}`);
+    } else if (item.type === "lodge") {
+      navigate(`/lodge/${item.id}`);
+    } else if (item.type === "shared") {
+      navigate(`/sharedroom/${item.id}`);
+    } else if (item.type === "hostel") {
+      navigate(`/hostel/${item.id}`);
+    }
   };
 
   return (
     <div className="container" id="searchBar">
       <div className="searchBar searchBar-new">
         <button
-  className="filter-icon-button"
-  onClick={() => setShowFilters(!showFilters)}
-  title={showFilters ? "Hide Filters" : "Show Filters"} 
->
- <FaSliders />
-</button>
-
+          className="filter-icon-button"
+          onClick={() => setShowFilters(!showFilters)}
+          title={showFilters ? "Hide Filters" : "Show Filters"}
+        >
+          <FaSliders />
+        </button>
 
         <input
           type="text"
@@ -128,13 +145,9 @@ const Search = () => {
               <li
                 key={item.id + item.name}
                 className="search-dropdown-item"
-                onClick={() => handleSelectItem(item)} // ← ADDED
+                onClick={() => handleSelectItem(item)}
               >
-                <img
-                  src={item.image}
-                  alt={item.name}
-                  className="dropdown-img"
-                />
+                <img src={item.image} alt={item.name} className="dropdown-img" />
                 <div className="dropdown-info">
                   <h4>{item.name}</h4>
                   <span>
@@ -144,7 +157,9 @@ const Search = () => {
               </li>
             ))
           ) : (
-            <li className="search-no-result">No results found for "{query}"</li>
+            <li className="search-no-result">
+              No results found for "{query}"
+            </li>
           )}
         </ul>
       )}
