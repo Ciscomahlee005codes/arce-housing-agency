@@ -12,17 +12,10 @@ const Login = () => {
     password: '',
     confirmPassword: '',
     role: 'tenant',
-    // tenant
-    preferredLocation: '',
-    budget: '',
-    propertyType: '',
-    // student
     schoolName: '',
-    // landlord
     companyName: '',
     propertyLocation: '',
     landlordPropertyType: '',
-    // agent
     agencyName: '',
     licenseNumber: '',
     serviceAreas: ''
@@ -30,10 +23,6 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
-
-  const login = (user) => {
-    console.log("Logged in user:", user);
-  };
 
   const handleToggleForm = () => {
     setFormData({
@@ -43,9 +32,6 @@ const Login = () => {
       password: '',
       confirmPassword: '',
       role: 'tenant',
-      preferredLocation: '',
-      budget: '',
-      propertyType: '',
       schoolName: '',
       companyName: '',
       propertyLocation: '',
@@ -62,62 +48,126 @@ const Login = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const simulateLoading = (callback) => {
-    setIsLoading(true);
-    setTimeout(() => {
-      callback();
-      setIsLoading(false);
-    }, 1500);
-  };
-
-  const handleSignUp = () => {
-    const { password, confirmPassword } = formData;
-    if (password !== confirmPassword) {
-      alert('Passwords do not match');
-      return;
+  // Determine API path based on role
+  const getSignupPath = () => {
+    switch(formData.role) {
+      case 'tenant': return '/auth/tenant/signup';
+      case 'student': return '/auth/student/signup';
+      case 'landlord': return '/auth/landlord/signup';
+      case 'agent': return '/auth/agent/signup';
+      default: return '/auth/tenant/signup';
     }
-    simulateLoading(() => {
-      login(formData);
-      navigate('/dashboard/home');
-    });
   };
 
-  const handleLogin = () => {
-    simulateLoading(() => {
-      login(formData);
-      navigate('/dashboard/home');
-    });
+  const getLoginPath = () => {
+    switch(formData.role) {
+      case 'tenant': return '/auth/tenant/login';
+      case 'student': return '/auth/student/login';
+      case 'landlord': return '/auth/landlord/login';
+      case 'agent': return '/auth/agent/login';
+      default: return '/auth/tenant/login';
+    }
   };
 
-  // Role-specific fields
+  // ---------------- Signup ----------------
+// ---------------- Signup ----------------
+const handleSignUp = async () => {
+  const { password, confirmPassword, fullName, email, phone } = formData;
+  if (password !== confirmPassword) {
+    alert('Passwords do not match');
+    return;
+  }
+
+  setIsLoading(true);
+
+  try {
+    // Base payload (common for all roles)
+    let payload = { 
+      full_name: fullName, 
+      email, 
+      phone, 
+      password 
+    };
+
+    // Add role-specific fields
+    switch(formData.role) {
+      case 'student':
+        payload.school_name = formData.schoolName;
+        break;
+      // case 'landlord':
+      //   payload.company_name = formData.companyName;
+      //   payload.property_location = formData.propertyLocation;
+      //   payload.property_type = formData.propertyType;  // ✅ fixed snake_case
+        
+        case 'landlord':
+  payload.company_name = formData.companyName;
+  payload.property_location = formData.propertyLocation;
+  payload.landlord_property_type = formData.landlordPropertyType;  // ✅ fixed
+  break;
+
+
+        
+      case 'agent':
+        payload.agency_name = formData.agencyName;
+        payload.license_number = formData.licenseNumber;
+        payload.service_areas = formData.serviceAreas;
+        break;
+      default:
+        break; // tenant has no extra fields
+    }
+
+    const response = await fetch(`http://localhost:8000${getSignupPath()}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.detail || 'Signup failed');
+    }
+
+    const data = await response.json();
+    console.log('Signup successful:', data);
+    setIsLoginForm(true); // Switch to login after successful signup
+  } catch (error) {
+    alert(error.message);
+  } finally {
+    setIsLoading(false);
+  }
+};
+
+  // ---------------- Login ----------------
+  const handleLogin = async () => {
+    const { email, password } = formData;
+    setIsLoading(true);
+
+    try {
+      const response = await fetch(`http://localhost:8000${getLoginPath()}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+        credentials: 'include' // cookies
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.detail || 'Login failed');
+      }
+
+      const data = await response.json();
+      console.log(data.message); // "Login successful"
+      navigate('/'); // Redirect to dashboard/home
+    } catch (error) {
+      alert(error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // ---------------- Role-specific fields ----------------
   const renderRoleFields = () => {
     switch (formData.role) {
-      case 'tenant':
-        return (
-          <>
-            <input
-              name="preferredLocation"
-              type="text"
-              placeholder="Preferred Location"
-              value={formData.preferredLocation}
-              onChange={handleInputChange}
-            />
-            <input
-              name="budget"
-              type="number"
-              placeholder="Budget"
-              value={formData.budget}
-              onChange={handleInputChange}
-            />
-            <input
-              name="propertyType"
-              type="text"
-              placeholder="Property Type"
-              value={formData.propertyType}
-              onChange={handleInputChange}
-            />
-          </>
-        );
       case 'student':
         return (
           <input
@@ -181,7 +231,7 @@ const Login = () => {
           </>
         );
       default:
-        return null;
+        return null; // Tenant has no extra fields for now
     }
   };
 
@@ -214,6 +264,17 @@ const Login = () => {
                 value={formData.password}
                 onChange={handleInputChange}
               />
+              <select
+                name="role"
+                value={formData.role}
+                onChange={handleInputChange}
+                className="role-select"
+              >
+                <option value="tenant">Tenant</option>
+                <option value="student">Student</option>
+                <option value="landlord">Landlord</option>
+                <option value="agent">Agent</option>
+              </select>
               <button
                 className="primary-btn"
                 onClick={handleLogin}
@@ -271,7 +332,6 @@ const Login = () => {
                 onChange={handleInputChange}
               />
 
-              {/* Role Selection */}
               <select
                 name="role"
                 value={formData.role}
