@@ -105,8 +105,6 @@ const handleSignUp = async () => {
   payload.landlord_property_type = formData.landlordPropertyType;  // ✅ fixed
   break;
 
-
-        
       case 'agent':
         payload.agency_name = formData.agencyName;
         payload.license_number = formData.licenseNumber;

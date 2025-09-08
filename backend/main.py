@@ -9,9 +9,9 @@ from app.routers import student_auth
 from app.routers import landlord_auth
 from app.routers import agent_auth
 
-import models  # Ensure all models are loaded so SQLAlchemy creates tables
-
+#import models  # Ensure all models are loaded so SQLAlchemy creates tables
 # ---------------- Logging ----------------
+
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(name)s: %(message)s"
@@ -26,6 +26,7 @@ app = FastAPI(
 )
 
 # ---------------- CORS ----------------
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
@@ -38,11 +39,12 @@ app.add_middleware(
 )
 
 # ---------------- Database ----------------
-try:
-    Base.metadata.create_all(bind=engine)
-    logger.info("Database tables created or already exist.")
-except Exception as e:
-    logger.error(f"Failed to create tables: {e}")
+
+# try:
+#     # Base.metadata.create_all(bind=engine)
+#     logger.info("Database tables created or already exist.")
+# except Exception as e:
+#     logger.error(f"Failed to create tables: {e}")
 
 # ---------------- Include Routers ----------------
 app.include_router(tenant_signup.router)
