@@ -2,6 +2,7 @@ import "./NavBar.css";
 import { RiCustomerService2Fill } from "react-icons/ri";
 import { IoMdNotifications } from "react-icons/io";
 import { FaBell, FaHistory } from "react-icons/fa";
+import { BsChatSquareTextFill } from "react-icons/bs";
 import { FaCircleUser } from "react-icons/fa6";
 import { AiFillHome } from "react-icons/ai";
 import { BsBuildingsFill } from "react-icons/bs";
@@ -28,6 +29,7 @@ const NavBar = () => {
           <NavLink to='/contactUs' id="link">Contact Us</NavLink>
         </ul>
         <FaBell id="bell-icon" onClick={()=> navigate('/userNotification')}/>
+          <BsChatSquareTextFill id="bell-icon" onClick={()=> navigate('/userChats')} />
         <button onClick={()=> navigate('/login')}>Sign Up</button>
       </div>
       {/* Bottom Mobile Nav */}
