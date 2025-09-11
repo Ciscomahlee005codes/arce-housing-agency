@@ -201,6 +201,69 @@
   background-color: #005a16;
   color: white !important;
 }
+.filter-tabs {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 2rem;
+}
+
+.filter-tabs button {
+  border: 1px solid #160053;
+  background: white;
+  color: #160053;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.filter-tabs button.active,
+.filter-tabs button:hover {
+  background: #160053;
+  color: white;
+}
+
+/* List Apartment Form */
+.list-form {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
+}
+
+.list-form h2 {
+  color: #160053;
+  margin-bottom: 0.5rem;
+}
+
+.list-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.list-form input {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.list-form button {
+  padding: 12px;
+  background: #160053;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.list-form button:hover {
+  background: #10003a;
+}
 
 @media (max-width: 768px) {
   .history-table {

@@ -1,0 +1,90 @@
+.settings-container {
+  background: #fff;
+  margin: 30px;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+.settings-container h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #13118a;
+}
+
+/* Section styling */
+.settings-section {
+  border: 1px solid #eee;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  overflow: hidden;
+}
+
+.section-header {
+  background: #f9f9ff;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  cursor: pointer;
+  color: #13118a;
+}
+
+.section-header svg {
+  margin-right: 8px;
+}
+
+.section-body {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.section-body form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.section-body input,
+.section-body select {
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+.section-body button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  background: #0b08b8;
+  color: #fff;
+  cursor: pointer;
+}
+
+.section-body button:hover {
+  opacity: 0.8;
+}
+
+/* Backup buttons */
+.backup-btn {
+  background: #0b08b8;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.export-btn {
+  background: #28a745;
+  color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .section-body {
+    font-size: 14px;
+  }
+}

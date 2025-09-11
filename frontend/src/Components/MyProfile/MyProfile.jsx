@@ -12,6 +12,7 @@ import {
   FaQuestionCircle,
   FaStar,
 } from "react-icons/fa";
+import { FaHandHoldingDollar } from "react-icons/fa6";
 import { BsChatSquareTextFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
@@ -50,9 +51,9 @@ const MyProfile = () => {
 
   const menuItems = [
     { title: "Profile Settings", icon: <FaUser />, link: "/profileSettings" },
-    { title: "Messages", icon: <BsChatSquareTextFill />, link: "/" },
+    { title: "Messages", icon: <BsChatSquareTextFill />, link: "/userChats" },
     { title: "Notifications", icon: <FaBell />, link: "/userNotification" },
-    { title: "Referral Links", icon: <FaLink />, link: "/" },
+    { title: "Referral & Earn", icon: <FaHandHoldingDollar />, link: "/referTenants" },
     { title: "Contact Us", icon: <FaPhoneAlt />, link: "/contactUs", hideOnBig: true },
     { title: "About Us", icon: <FaInfoCircle />, link: "/aboutUs", hideOnBig: true },
     { title: "FAQs", icon: <FaQuestionCircle />, link: "/faq", hideOnBig: true },
