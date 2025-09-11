@@ -3,13 +3,14 @@ from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError
 from app.database import get_db
 from models import Agent
-from app.schemas import AgentSignupRequest, AgentResponse, AgentLoginRequest
+from app.schemas import AgentSignupRequest, AgentLoginRequest,AgentResponse, LoginResponse
 from auth import get_password_hash, verify_password, create_access_token, create_refresh_token
 import logging
 from datetime import timedelta
 
 router = APIRouter(prefix="/auth/agent", tags=["Authentication - Agent"])
 logger = logging.getLogger(__name__)
+
 
 # ---------------- Signup ----------------
 @router.post("/signup", response_model=AgentResponse)
@@ -50,18 +51,101 @@ def agent_signup(signup_data: AgentSignupRequest, db: Session = Depends(get_db))
         db.rollback()
         raise HTTPException(status_code=400, detail="Email or phone already registered")
 
-# ---------------- Login ----------------
-@router.post("/login")
+#----------------------Login--------------------------
+@router.post("/login", response_model=LoginResponse)
 def agent_login(login_data: AgentLoginRequest, response: Response, db: Session = Depends(get_db)):
+    # 🔍 Find agent
     agent = db.query(Agent).filter(Agent.email == login_data.email).first()
     if not agent or not verify_password(login_data.password, agent.hashed_password):
         logger.warning(f"Failed login attempt for email: {login_data.email}")
         raise HTTPException(status_code=401, detail="Invalid credentials")
 
-    access_token = create_access_token(data={"sub": agent.email, "role": "agent"}, expires_delta=timedelta(minutes=15))
-    refresh_token = create_refresh_token(data={"sub": agent.email, "role": "agent"}, expires_days=7)
+    # 🔑 Create JWTs
+    access_token = create_access_token(
+        data={"sub": agent.email, "role": "agent"},
+        expires_delta=timedelta(minutes=15)
+    )
+    refresh_token = create_refresh_token(
+        data={"sub": agent.email, "role": "agent"},
+        expires_days=7
+    )
 
-    response.set_cookie("access_token", access_token, httponly=True, secure=True, samesite="Strict")
-    response.set_cookie("refresh_token", refresh_token, httponly=True, secure=True, samesite="Strict")
+    # 🍪 Set HttpOnly cookies
+    response.set_cookie(
+        key="access_token",
+        value=access_token,
+        httponly=True,
+        secure=False,          # Set to True before production
+        samesite="Lax",       # ✅ "Strict" can break some redirects
+        max_age=15 * 60       # 15 minutes
+    )
+    response.set_cookie(
+        key="refresh_token",
+        value=refresh_token,
+        httponly=True,
+        secure=False,   #set to True before production
+        samesite="Lax",
+        max_age=7 * 24 * 60 * 60  # 7 days
+    )
 
-    return {"message": "Login successful"}
+    # 📌 Return standardized response (no tokens exposed in JSON)
+    #do not return tokens in JSON
+    return LoginResponse(message="Login successful", role="agent")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# from fastapi import APIRouter, Depends, HTTPException, Response
+# from sqlalchemy.orm import Session
+# from sqlalchemy.exc import IntegrityError
+# from app.database import get_db
+# from models import Agent
+# from app.schemas import AgentSignupRequest, AgentResponse, AgentLoginRequest
+# from auth import get_password_hash, verify_password, create_access_token, create_refresh_token
+# import logging
+# from datetime import timedelta
+
+# router = APIRouter(prefix="/auth/agent", tags=["Authentication - Agent"])
+# logger = logging.getLogger(__name__)
+
+
+
+# # ---------------- Login ----------------
+# @router.post("/login")
+# def agent_login(login_data: AgentLoginRequest, response: Response, db: Session = Depends(get_db)):
+#     agent = db.query(Agent).filter(Agent.email == login_data.email).first()
+#     if not agent or not verify_password(login_data.password, agent.hashed_password):
+#         logger.warning(f"Failed login attempt for email: {login_data.email}")
+#         raise HTTPException(status_code=401, detail="Invalid credentials")
+
+#     access_token = create_access_token(data={"sub": agent.email, "role": "agent"}, expires_delta=timedelta(minutes=15))
+#     refresh_token = create_refresh_token(data={"sub": agent.email, "role": "agent"}, expires_days=7)
+
+#     response.set_cookie("access_token", access_token, httponly=True, secure=True, samesite="Strict")
+#     response.set_cookie("refresh_token", refresh_token, httponly=True, secure=True, samesite="Strict")
+
+#     return {"message": "Login successful", "role": "agent", "access_token": access_token, "refresh_token": refresh_token}

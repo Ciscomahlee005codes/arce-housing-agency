@@ -7,7 +7,7 @@ load_dotenv()  # take environment variables from .env file
 
 # PostgreSQL connection
 DATABASE_URL = os.getenv(
-    "DATABASE_URL",
+    "DATABASE_URL"
     
 )
 

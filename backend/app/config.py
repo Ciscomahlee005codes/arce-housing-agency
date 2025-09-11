@@ -1,9 +1,12 @@
-from pydantic_settings import BaseSettings
-
+# import os
+from pydantic_settings import BaseSettings, SettingsConfigDict
+# from dotenv import dotenv_values
 class Settings(BaseSettings):
-    SECRET_KEY: str = "bzDlkz0GUSRut2Jp1Si4GQsOfKi6tUhxvQBNQfJh06jctK2KtD2tRQNglHvhj2WoFd8"  # replace with env var in production
-    ALGORITHM: str = "HS256"
-    ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
+    SECRET_KEY: str  # replace with env var in production
+    ALGORITHM: str 
+    ACCESS_TOKEN_EXPIRE_MINUTES: int
+
+    model_config=SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
 
 settings = Settings()
 # Note: In a real application, use environment variables to set sensitive information.

@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError
 from app.database import get_db
 from models import Landlord
-from app.schemas import LandlordSignupRequest, LandlordResponse, LandlordLoginRequest
+from app.schemas import LandlordSignupRequest, LandlordResponse, LandlordLoginRequest, LoginResponse
 from auth import get_password_hash, verify_password, create_access_token, create_refresh_token
 import logging
 from datetime import timedelta
@@ -28,7 +28,7 @@ def landlord_signup(signup_data: LandlordSignupRequest, db: Session = Depends(ge
             hashed_password=hashed_password,
             company_name=signup_data.company_name,
             property_location=signup_data.property_location,
-            property_type=signup_data.property_type
+            landlord_property_type=signup_data.property_type
         )
 
         db.add(new_landlord)
@@ -42,7 +42,7 @@ def landlord_signup(signup_data: LandlordSignupRequest, db: Session = Depends(ge
             phone=new_landlord.phone,
             company_name=new_landlord.company_name,
             property_location=new_landlord.property_location,
-            property_type=new_landlord.property_type,
+            landlord_property_type=new_landlord.property_type,
             message="Signup successful"
         )
 
@@ -61,7 +61,26 @@ def landlord_login(login_data: LandlordLoginRequest, response: Response, db: Ses
     access_token = create_access_token(data={"sub": landlord.email, "role": "landlord"}, expires_delta=timedelta(minutes=15))
     refresh_token = create_refresh_token(data={"sub": landlord.email, "role": "landlord"}, expires_days=7)
 
-    response.set_cookie("access_token", access_token, httponly=True, secure=True, samesite="Strict")
-    response.set_cookie("refresh_token", refresh_token, httponly=True, secure=True, samesite="Strict")
+    # response.set_cookie("access_token", access_token, httponly=True, secure=True, samesite="Strict")
+    # response.set_cookie("refresh_token", refresh_token, httponly=True, secure=True, samesite="Strict")
 
-    return {"message": "Login successful"}
+    response.set_cookie(
+    key="access_token",
+    value=access_token,
+    httponly=True,
+    secure=False,         # False for dev, True in prod
+    samesite="Lax",       # Lax works better than Strict for most login flows
+    max_age=15 * 60
+    )
+    response.set_cookie(
+    key="refresh_token",
+    value=refresh_token,
+    httponly=True,
+    secure=False,         # False for dev, True in prod
+    samesite="Lax",
+    max_age=7 * 24 * 60 * 60
+   )
+
+    return LoginResponse(message="Login successful", role= "landlord")
+
+

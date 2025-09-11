@@ -2,7 +2,7 @@
 from fastapi import Depends, HTTPException, status, Request
 from jose import JWTError, jwt
 from sqlalchemy.orm import Session
-
+from typing import Optional
 from app.database import get_db
 import models
 from app.config import settings  # must provide SECRET_KEY and ALGORITHM in your settings
@@ -19,7 +19,7 @@ def get_current_tenant(request: Request, db: Session = Depends(get_db)) -> model
     # 2) Verify JWT (signature, expiry). jose validates "exp" automatically if present.
     try:
         payload = jwt.decode(token, settings.SECRET_KEY, algorithms=[settings.ALGORITHM])
-        email: str | None = payload.get("sub")
+        email: Optional[str] | None = payload.get("sub")
         if not email:
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,

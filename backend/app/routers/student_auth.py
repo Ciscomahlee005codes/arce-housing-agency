@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError
 from app.database import get_db
 from models import Student
-from app.schemas import StudentSignupRequest, StudentResponse, StudentLoginRequest, TokenResponse
+from app.schemas import StudentSignupRequest, StudentResponse, StudentLoginRequest, LoginResponse,TokenResponse
 from auth import get_password_hash, verify_password, create_access_token, create_refresh_token
 import logging
 from datetime import timedelta
@@ -65,7 +65,7 @@ def student_login(login_data: StudentLoginRequest, response: Response, db: Sessi
     refresh_token = create_refresh_token(data={"sub": student.email, "role": "student"}, expires_days=7)
 
     # Set HttpOnly, secure cookies
-    response.set_cookie("access_token", access_token, httponly=True, secure=True, samesite="Strict")
-    response.set_cookie("refresh_token", refresh_token, httponly=True, secure=True, samesite="Strict")
+    response.set_cookie("access_token", access_token, httponly=True, secure=False, samesite="Strict")
+    response.set_cookie("refresh_token", refresh_token, httponly=True, secure=False, samesite="Strict")
 
-    return {"message": "Login successful"}
+    return LoginResponse(message= "Login successful", role= "student")
