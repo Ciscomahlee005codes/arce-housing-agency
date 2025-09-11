@@ -93,3 +93,14 @@
   background: #fff4e5;
   color: #d17f00;
 }
+@media (max-width: 320px) {
+  .mark-btn {
+  background: #0b2b63;
+  color: white;
+  padding: 5px 5px;
+  border: none;
+  border-radius: 4px;
+  font-size: 10px;
+  cursor: pointer;
+}
+}

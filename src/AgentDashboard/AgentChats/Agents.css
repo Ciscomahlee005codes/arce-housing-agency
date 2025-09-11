@@ -64,7 +64,7 @@
   background-color: #fdecea;
   color: #c62828;
 }
-.search-bar {
+.top-bar {
   width: 100%;
   padding: 12px;
   font-size: 16px;
@@ -96,16 +96,5 @@
   padding: 20px;
   border-radius: 30px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-}
-}
-@media (max-width: 320px) {
-  .search-bar {
-  width: 10px;
-  padding: 12px;
-  font-size: 16px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  outline: none;
-  transition: border-color 0.2s;
 }
 }

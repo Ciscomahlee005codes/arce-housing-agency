@@ -200,6 +200,9 @@ body.dark-mode .danger-zone {
 }
 
 @media (max-width: 600px) {
+  .settings-container h2{
+    font-size: 22px;
+  }
   .profile-card {
     flex-direction: column;
     text-align: center;

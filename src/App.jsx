@@ -22,6 +22,15 @@ import AgentNotificationPage from './AgentDashboardPages/AgentNotificationPage/A
 import AgentProfilePage from './AgentDashboardPages/AgentProfilePage/AgentProfilePage';
 import HelpSupportPage from './AgentDashboardPages/HelpSupportPage/HelpSupportPage';
 import AgentMessagesPages from './AgentDashboardPages/AgentMessagesPages/AgentMessagesPages';
+import AdminHomePage from './Admin/AdminDashboardPages/AdminHomepage/AdminHomePage';
+import AdminUserPage from './Admin/AdminDashboardPages/AdminUserPage/AdminUserPage';
+import AdminAgentPage from './Admin/AdminDashboardPages/AdminAgentPage/AdminAgentPage';
+import AdminPropertyPages from './Admin/AdminDashboardPages/AdminPropertyPages/AdminPropertyPages';
+import AdminNotificationPages from './Admin/AdminDashboardPages/AdminNotificationPages/AdminNotificationPages';
+import AdminSettingsPage from './Admin/AdminDashboardPages/AdminSettingsPage/AdminSettingsPage';
+import AdminReportPages from './Admin/AdminDashboardPages/AdminReportPages/AdminReportPages';
+import AdminPaymentPage from './Admin/AdminDashboardPages/AdminPaymentPage/AdminPaymentPage';
+import AdminMessagePage from './Admin/AdminDashboardPages/AdminMessagePage/AdminMessagePage';
 
 // Lazy-loaded pages
 const Home = DelayLoader(() => import("./Pages/Home/Home"));
@@ -41,7 +50,11 @@ function App() {
     "/agentDashboard/Property", "/agentDashboard/RentalPage",
      "/agentDashboard/Request", "/agentDashboard/notification",
       "/agentDashboard/Profile", "/agentDashboard/HelpSupport",
-       "/agentDashboard/Messages"];
+       "/agentDashboard/Messages", "/adminDashboard/Home",
+      "/adminDashboard/UserManagement", "/adminDashboard/AdminManagement",
+    "/adminDashboard/Properties", "/adminDashboard/Notification",
+  "/adminDashboard/Settings", "/adminDashboard/Reports",
+"/adminDashboard/Payment", "/adminDashboard/Messages"];
     const hideNavAndFooter = hiddenRoutes.includes(location.pathname);
 
   return (
@@ -71,7 +84,7 @@ function App() {
            <Route path="/referTenants" element={<ReferTenant />} />
           <Route path="/login" element={<LogInPage />} />
 
-          {/* Dashboard Routes */}
+          {/* Agent Dashboard Routes */}
            <Route path="/agentDashboard/Home" element={<AgentDashboardHomePage />} />
             <Route path="/agentDashboard/Property" element={<AgentPropertiesPage />} />
             <Route path="/agentDashboard/RentalPage" element={<AgentRentalTourPage />} />
@@ -80,6 +93,17 @@ function App() {
             <Route path="/agentDashboard/Profile" element={<AgentProfilePage />} />
             <Route path="/agentDashboard/HelpSupport" element={<HelpSupportPage />} />
             <Route path="/agentDashboard/Messages" element={<AgentMessagesPages />} />
+            {/* Admin Dashboard Routes */}
+            
+             <Route path="/adminDashboard/Home" element={<AdminHomePage />} />
+             <Route path="/adminDashboard/UserManagement" element={<AdminUserPage />} />
+              <Route path="/adminDashboard/AdminManagement" element={<AdminAgentPage />} />
+               <Route path="/adminDashboard/Properties" element={<AdminPropertyPages />} />
+               <Route path="/adminDashboard/Notification" element={<AdminNotificationPages />} />
+             <Route path="/adminDashboard/Settings" element={<AdminSettingsPage />} /> 
+              <Route path="/adminDashboard/Reports" element={<AdminReportPages />} /> 
+              <Route path="/adminDashboard/Payment" element={<AdminPaymentPage />} />   
+               <Route path="/adminDashboard/Messages" element={<AdminMessagePage />} /> 
         </Routes>
 
         {/* Only show Footer when not on login */}

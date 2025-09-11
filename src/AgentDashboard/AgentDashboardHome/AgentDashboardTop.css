@@ -163,8 +163,8 @@
   }
     .search-bar {
   transform: translateX(20%); /* move slightly left */
-  width: 100%;
-  max-width: 800px;
+  width: 150%;
+  max-width: 1000px;
   display: flex;
   align-items: center;
   justify-content: center;

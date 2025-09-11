@@ -59,7 +59,7 @@ const AgentRequest = () => {
           placeholder="Search by address or file..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="search-bar"
+          className="request-bar"
         />
 
         {/* Desktop Table View */}

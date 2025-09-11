@@ -19,7 +19,7 @@ const Agents = () => {
           placeholder="Search by name or apartment..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="search-bar"
+          className="top-bar"
         /><br /><br />
         <ul>
           {filteredTenants.map((tenant) => (
