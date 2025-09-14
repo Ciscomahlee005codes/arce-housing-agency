@@ -1,0 +1,128 @@
+.admin-topbar {
+  height: 60px;
+  background: #1e1e2f;
+  color: #e4e4e7;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  position: sticky;
+  top: 0;
+  z-index: 900;
+}
+
+/* Search Bar */
+.topbar-search {
+  display: flex;
+  align-items: center;
+  background: #2d2d44;
+  padding: 6px 10px;
+  border-radius: 8px;
+  flex: 1;
+  max-width: 400px;
+}
+
+.topbar-search .search-icon {
+  color: #9ca3af;
+  margin-right: 8px;
+}
+
+.topbar-search input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  width: 100%;
+}
+
+/* Right Side */
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Notifications */
+.topbar-icon {
+  position: relative;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.notification-badge {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  background: #ef4444;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 2px 5px;
+  border-radius: 50%;
+}
+
+/* Profile */
+.topbar-profile {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.profile-avatar {
+  font-size: 1.6rem;
+  color: #38bdf8; /* cyan blue accent */
+}
+
+.profile-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* Logout Button */
+.logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #ef4444;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.logout-btn:hover {
+  background: #b91c1c;
+}
+
+.logout-text {
+  display: inline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .topbar-search {
+    max-width: 300px;
+    margin: auto;
+  }
+  .logout-btn{
+    display: none;
+  }
+}
+@media (max-width: 500px) {
+  .topbar-search {
+    max-width: 220px;
+    margin: auto;
+  }
+  .topbar-icon{
+    display: none;
+  }
+  .profile-name{
+    display: none;
+  }
+}

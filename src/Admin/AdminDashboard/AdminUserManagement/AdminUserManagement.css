@@ -1,0 +1,196 @@
+/* AdminUserManagement.css */
+
+/* Page container */
+.user-management {
+  padding: 30px;
+  background: #f9fafb;
+  color: #0f172a;
+  min-height: 100vh;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.user-management h2 {
+  font-size: 1.8rem;
+  margin-bottom: 25px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+/* Table styles */
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.user-table th,
+.user-table td {
+  padding: 14px 18px;
+  text-align: left;
+}
+
+.user-table th {
+  background: #0f172a;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #f9fafb;
+}
+
+.user-table tr {
+  border-bottom: 1px solid #e5e7eb;
+  transition: background 0.2s ease;
+}
+
+.user-table tr:hover {
+  background: #f3f4f6;
+}
+
+/* Status colors */
+.user-table tr.active td {
+  color: #22c55e;
+  font-weight: 600;
+}
+
+.user-table tr.blocked td {
+  color: #ef4444;
+  font-weight: 600;
+}
+
+.user-table tr.pending td {
+  color: #f59e0b;
+  font-weight: 600;
+}
+/* Filter Tabs */
+.filter-tabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap; /* Allow wrapping for smaller screens */
+}
+
+.filter-btn {
+  padding: 8px 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #0f172a;
+   flex-shrink: 0; 
+}
+
+.filter-btn:hover {
+  background: #f3f4f6;
+}
+
+.filter-btn.active {
+  background: #2563eb;
+  color: #fff;
+  border-color: #2563eb;
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn {
+  border: none;
+  padding: 7px 14px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Button Styles */
+.btn.block {
+  background: #ef4444;
+  color: #fff;
+}
+.btn.block:hover {
+  background: #dc2626;
+}
+
+.btn.unblock {
+  background: #22c55e;
+  color: #fff;
+}
+.btn.unblock:hover {
+  background: #16a34a;
+}
+
+.btn.approve {
+  background: #2563eb;
+  color: #fff;
+}
+.btn.approve:hover {
+  background: #1d4ed8;
+}
+
+.btn.reset {
+  background: #6b7280;
+  color: #fff;
+}
+.btn.reset:hover {
+  background: #4b5563;
+}
+
+/* Responsive */
+@media (max-width: 820px) {
+  .user-management h2{
+    text-align: center;
+  }
+}
+@media (max-width: 768px) {
+  .user-table,
+  .user-table thead,
+  .user-table tbody,
+  .user-table th,
+  .user-table td,
+  .user-table tr {
+    display: block;
+    width: 100%;
+  }
+
+  .user-table thead {
+    display: none;
+  }
+
+  .user-table tr {
+    margin-bottom: 14px;
+    background: #fff;
+    border-radius: 8px;
+    padding: 12px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  }
+
+  .user-table td {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+  }
+
+  .actions {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+}
+@media (max-width: 430px) {
+  .user-management h2 {
+  font-size: 1.5rem;
+  margin-bottom: 25px;
+  font-weight: 700;
+  color: #0f172a;
+}
+}
