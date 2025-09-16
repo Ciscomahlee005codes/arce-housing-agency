@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import customerServiceImg from '../../assets/customer-service.png'
+import CustomerService from "../CustomerService/CustomerService";
 import "./Notification.css";
 
 // Notification data
@@ -47,6 +49,7 @@ const notifications = [
 
 const Notification = () => {
   const [data, setData] = useState(notifications);
+   const [showHelp, setShowHelp] = useState(false);
 
   const markAsRead = (id) => {
     const updated = data.map((n) =>
@@ -84,6 +87,13 @@ const Notification = () => {
           ))}
         </ul>
       )}
+      <img
+        onClick={() => setShowHelp(true)}
+          src={customerServiceImg}
+          alt="Customer Service"
+          className="customer-service-btn"
+        />
+         {showHelp && <CustomerService onClose={() => setShowHelp(false)} />}
     </div>
   );
 };

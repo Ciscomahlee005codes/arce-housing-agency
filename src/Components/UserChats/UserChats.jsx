@@ -1,6 +1,7 @@
 // src/pages/UserChats.jsx
 import React, { useState } from "react";
 import { agents_list } from "../../../User_Data";
+import { IoArrowBack } from "react-icons/io5";
 import "./UserChats.css";
 
 const UserChats = () => {
@@ -10,6 +11,10 @@ const UserChats = () => {
 
   const handleSelectAgent = (agent) => {
     setSelectedAgent(agent);
+  };
+
+  const handleBack = () => {
+    setSelectedAgent(null);
   };
 
   const handleSendMessage = () => {
@@ -25,61 +30,74 @@ const UserChats = () => {
   };
 
   return (
-    <div className="userchats-container">
-      {/* LEFT PANEL - Agent List */}
-      <div className="agents-list">
-        <h3>Available Agents</h3>
-        {agents_list.map((agent) => (
-          <div
-            key={agent.id}
-            className={`agent-card ${
-              selectedAgent?.id === agent.id ? "active" : ""
-            }`}
-            onClick={() => handleSelectAgent(agent)}
-          >
-            <img src={agent.image} alt={agent.name} />
-            <div>
-              <p className="agent-name">{agent.name}</p>
-              <p className="agent-location">{agent.location}</p>
+    <div className="chat-wrapper">
+      {/* LEFT - Agents List */}
+      <div
+        className={`chat-list-section ${
+          selectedAgent ? "hide-on-mobile" : ""
+        }`}
+      >
+        <div className="chat-list">
+          <h3>Available Agents</h3>
+          {agents_list.map((agent) => (
+            <div
+              key={agent.id}
+              className={`chat-item ${
+                selectedAgent?.id === agent.id ? "active" : ""
+              }`}
+              onClick={() => handleSelectAgent(agent)}
+            >
+              <img src={agent.image} alt={agent.name} className="chat-avatar" />
+              <div className="chat-info">
+                <h4>{agent.name}</h4>
+                <p>{agent.location}</p>
+              </div>
             </div>
+          ))}
+        </div>
+      </div>
+
+      {/* RIGHT - Chat Window */}
+      <div className={`chat-window ${selectedAgent ? "active" : ""}`}>
+  {selectedAgent && (
+    <div className="chat-window-content">
+      <div className="chat-window-header">
+        {/* Back button visible on mobile */}
+        <IoArrowBack className="back-btn" onClick={handleBack} />
+        <img
+          src={selectedAgent.image}
+          alt={selectedAgent.name}
+          className="chat-avatar"
+        />
+        <div>
+          <h3>{selectedAgent.name}</h3>
+          <p>{selectedAgent.location}</p>
+        </div>
+      </div>
+
+      <div className="chat-messages">
+        {(chatMessages[selectedAgent.id] || []).map((msg, idx) => (
+          <div key={idx} className={`chat-message ${msg.sender}`}>
+            {msg.text}
           </div>
         ))}
       </div>
 
-      {/* RIGHT PANEL - Chat Area */}
-      <div className="chat-area">
-        {selectedAgent ? (
-          <>
-            <div className="chat-header">
-              <img src={selectedAgent.image} alt={selectedAgent.name} />
-              <div>
-                <p className="agent-name">{selectedAgent.name}</p>
-                <p className="agent-location">{selectedAgent.location}</p>
-              </div>
-            </div>
-
-            <div className="chat-messages">
-              {(chatMessages[selectedAgent.id] || []).map((msg, idx) => (
-                <div key={idx} className={`chat-message ${msg.sender}`}>
-                  {msg.text}
-                </div>
-              ))}
-            </div>
-
-            <div className="chat-input">
-              <input
-                type="text"
-                placeholder="Type a message..."
-                value={chatInput}
-                onChange={(e) => setChatInput(e.target.value)}
-              />
-              <button onClick={handleSendMessage}>Send</button>
-            </div>
-          </>
-        ) : (
-          <div className="no-chat">Select an agent to start chatting</div>
-        )}
+      <div className="chat-input">
+        <input
+          type="text"
+          placeholder="Type a message..."
+          value={chatInput}
+          onChange={(e) => setChatInput(e.target.value)}
+        />
+        <button onClick={handleSendMessage}>Send</button>
       </div>
+    </div>
+  )}
+</div>
+
+{/* Empty chat message only visible on desktop */}
+{!selectedAgent && <div className="empty-chat">👈 Select an agent to start chatting</div>}
     </div>
   );
 };

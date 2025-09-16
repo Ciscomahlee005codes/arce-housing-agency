@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import {
   FaTachometerAlt,
@@ -18,20 +18,41 @@ import "./AgentSideBar.css";
 
 const AgentSideBar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
 
+  // detect screen size
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768); // treat <=768px as mobile
+    };
+
+    handleResize(); // run on first load
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <>
-      {/* Hamburger / Close Button */}
-      <button className="hamburger" onClick={toggleSidebar}>
-        {isOpen ? <FaTimes /> : <FaBars />}
-      </button>
+      {/* Hamburger Button (only on mobile when sidebar is closed) */}
+      {isMobile && !isOpen && (
+        <button className="hamburger" onClick={toggleSidebar}>
+          <FaBars />
+        </button>
+      )}
 
       {/* Sidebar */}
-      <div className={`sidebar ${isOpen ? "open" : ""}`}>
+      <div className={`sidebar ${isMobile && isOpen ? "open" : ""}`}>
+        {/* Close Button (only on mobile) */}
+        {isMobile && (
+          <button className="close-btn" onClick={toggleSidebar}>
+            <FaTimes />
+          </button>
+        )}
+
         {/* User Info */}
         <div className="user-info">
           <FaUserCircle className="user-avatar" />
@@ -55,7 +76,7 @@ const AgentSideBar = () => {
           </li>
           <li>
             <NavLink to="/agentdashboard/rentalPage" className="link">
-              <FaHistory /> Rental History 
+              <FaHistory /> Rental History
             </NavLink>
           </li>
           <li>
@@ -85,16 +106,13 @@ const AgentSideBar = () => {
           </li>
         </ul>
 
-        {/* Logout Button at Bottom */}
+        {/* Logout */}
         <div className="logout">
           <button>
             <FaSignOutAlt /> Logout
           </button>
         </div>
       </div>
-
-      {/* Overlay for mobile */}
-      {isOpen && <div className="overlay" onClick={toggleSidebar}></div>}
     </>
   );
 };

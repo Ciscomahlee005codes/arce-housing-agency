@@ -28,8 +28,10 @@ const NavBar = () => {
           <NavLink to='/rentalHistory' id="link">Rental History</NavLink>
           <NavLink to='/contactUs' id="link">Contact Us</NavLink>
         </ul>
-        <FaBell id="bell-icon" onClick={()=> navigate('/userNotification')}/>
+         <div className="head-icons">
+           <FaBell id="bell-icon" onClick={()=> navigate('/userNotification')}/>
           <BsChatSquareTextFill id="bell-icon" onClick={()=> navigate('/userChats')} />
+         </div>
         <button onClick={()=> navigate('/login')}>Sign Up</button>
       </div>
       {/* Bottom Mobile Nav */}
