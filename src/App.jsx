@@ -34,6 +34,7 @@ import AdminSettingsPage from './Admin/AdminDashboardPages/AdminSettingsPage/Adm
 import AdminReportPages from './Admin/AdminDashboardPages/AdminReportPages/AdminReportPages';
 import AdminPaymentPage from './Admin/AdminDashboardPages/AdminPaymentPage/AdminPaymentPage';
 import AdminMessagePage from './Admin/AdminDashboardPages/AdminMessagePage/AdminMessagePage';
+import AdminLogin from './Admin/AdminDashboard/AdminLogin/AdminLogin';
 
 // Lazy-loaded pages
 const Home = DelayLoader(() => import("./Pages/Home/Home"));
@@ -55,7 +56,7 @@ function App() {
     "/login",
     "/agentdashboard/home", "/agentdashboard/property", "/agentdashboard/rentalpage",
     "/agentdashboard/request", "/agentdashboard/notification", "/agentdashboard/profile",
-    "/agentdashboard/helpsupport", "/agentdashboard/messages",
+    "/agentdashboard/helpsupport", "/agentdashboard/messages", "/admin/login",
     "/admindashboard/home", "/admindashboard/usermanagement", "/admindashboard/adminmanagement",
     "/admindashboard/properties", "/admindashboard/notification", "/admindashboard/settings",
     "/admindashboard/reports", "/admindashboard/payment", "/admindashboard/messages"
@@ -102,6 +103,7 @@ function App() {
           <Route path="/agentdashboard/messages" element={<AgentMessagesPages />} />
 
           {/* Admin Dashboard Routes */}
+          <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admindashboard/home" element={<AdminHomePage />} />
           <Route path="/admindashboard/usermanagement" element={<AdminUserPage />} />
           <Route path="/admindashboard/adminmanagement" element={<AdminAgentPage />} />
