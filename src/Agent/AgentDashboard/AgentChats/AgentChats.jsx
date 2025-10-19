@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import './Agents.css';
-import { agents_list } from '../../../User_Data';
+import './AgentChats.css';
+import { agents_list } from '../../../../User_Data';
 
-const Agents = () => {
+const AgentChats = () => {
   const [searchQuery, setSearchQuery] = useState('');
 
   const filteredTenants = agents_list.filter((tenant) =>
@@ -42,4 +42,4 @@ const Agents = () => {
   );
 };
 
-export default Agents;
+export default AgentChats;

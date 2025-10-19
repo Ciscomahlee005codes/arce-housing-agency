@@ -1,100 +1,120 @@
-import React, { useState } from "react"
-import "./AdminMessages.css"
+import React, { useState, useEffect, useRef } from "react";
+import "./AdminMessages.css";
 
 const AdminMessages = () => {
-  const [selectedChat, setSelectedChat] = useState(null)
-  const [tickets, setTickets] = useState([
-    { id: 1, user: "John Doe", issue: "Payment not reflecting", status: "Open" },
-    { id: 2, user: "Agent Mike", issue: "Listing rejected", status: "In Progress" },
-    { id: 3, user: "Sarah", issue: "Scam report", status: "Resolved" },
-  ])
+  const contacts = [
+    { id: 1, name: "Tony Adams", role: "Agent" },
+    { id: 2, name: "Sarah Bello", role: "Landlord" },
+    { id: 3, name: "Mike Daniels", role: "Tenant" },
+    { id: 4, name: "Jane Nwosu", role: "Agent" },
+    { id: 5, name: "John Smith", role: "Tenant" },
+    { id: 6, name: "Aisha Kareem", role: "Admin" },
+    { id: 7, name: "Kelvin Brooks", role: "Landlord" },
+    { id: 8, name: "Grace Okon", role: "Tenant" },
+    { id: 9, name: "David Obi", role: "Agent" },
+    { id: 10, name: "Sophia James", role: "Admin" },
+  ];
 
-  const [faqs, setFaqs] = useState([
-    { q: "How do I list a property?", a: "Go to 'Add Property' in dashboard." },
-    { q: "How do I reset my password?", a: "Use the forgot password link on login page." },
-  ])
+  const [selectedUser, setSelectedUser] = useState(contacts[0]);
+  const [message, setMessage] = useState("");
+  const [chats, setChats] = useState([]);
+  const chatEndRef = useRef(null);
+
+  const handleSend = () => {
+    if (!message.trim()) return;
+
+    const newMessage = {
+      sender: "Admin",
+      text: message,
+      time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+    };
+
+    setChats([...chats, newMessage]);
+    setMessage("");
+
+    // simulate reply
+    setTimeout(() => {
+      setChats((prev) => [
+        ...prev,
+        {
+          sender: selectedUser.name,
+          text: `Got your message, Admin 👋`,
+          time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+        },
+      ]);
+    }, 1000);
+  };
+
+  useEffect(() => {
+    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [chats]);
 
   return (
-    <div className="admin-messages-container">
-      <h2>Messages & Support</h2>
-
-      {/* Analytics Summary */}
-      <div className="summary-cards">
-        <div className="card">Open Tickets: 12</div>
-        <div className="card">Resolved: 45</div>
-        <div className="card">Avg Response: 2hrs</div>
+    <div className="admin-chat-container">
+      <div className="chat-sidebar">
+        <h3>Contacts</h3>
+        <ul>
+          {contacts.map((user) => (
+            <li
+              key={user.id}
+              className={selectedUser.id === user.id ? "active" : ""}
+              onClick={() => setSelectedUser(user)}
+            >
+              <div className="avatar">{user.name.charAt(0)}</div>
+              <div className="contact-info">
+                <span className="contact-name">{user.name}</span>
+                <span className="contact-role">{user.role}</span>
+              </div>
+            </li>
+          ))}
+        </ul>
       </div>
 
-      <div className="messages-support-grid">
-        {/* Chats */}
-        <div className="chat-section">
-          <h3>Agent-User Messages</h3>
-          <div className="chat-list">
-            <p onClick={() => setSelectedChat("Chat with John")}>Chat with John Doe</p>
-            <p onClick={() => setSelectedChat("Chat with Agent Mike")}>Chat with Agent Mike</p>
+      <div className="chat-section">
+        <div className="chat-header">
+          <div className="chat-user">
+            <div className="avatar big">{selectedUser.name.charAt(0)}</div>
+            <div>
+              <h4>{selectedUser.name}</h4>
+              <p>{selectedUser.role} • Online</p>
+            </div>
           </div>
-          <div className="chat-window">
-            {selectedChat ? (
-              <div>
-                <h4>{selectedChat}</h4>
-                <div className="chat-box">
-                  <p><b>John:</b> Hello Admin!</p>
-                  <p><b>Admin:</b> How can I assist you?</p>
-                </div>
-                <input type="text" placeholder="Type a reply..." />
+        </div>
+
+        <div className="chat-body">
+          {chats.length === 0 ? (
+            <p className="empty-chat">
+              Start a conversation with {selectedUser.name} ({selectedUser.role})...
+            </p>
+          ) : (
+            chats.map((msg, index) => (
+              <div
+                key={index}
+                className={`chat-bubble ${
+                  msg.sender === "Admin" ? "sent" : "received"
+                }`}
+              >
+                <p>{msg.text}</p>
+                <span>{msg.time}</span>
               </div>
-            ) : (
-              <p>Select a chat to view messages</p>
-            )}
-          </div>
+            ))
+          )}
+          <div ref={chatEndRef}></div>
         </div>
 
-        {/* Support Tickets */}
-        <div className="ticket-section">
-          <h3>Support Tickets</h3>
-          <table>
-            <thead>
-              <tr>
-                <th>User</th>
-                <th>Issue</th>
-                <th>Status</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {tickets.map((t) => (
-                <tr key={t.id}>
-                  <td>{t.user}</td>
-                  <td>{t.issue}</td>
-                  <td>
-                    <span className={`status ${t.status.toLowerCase()}`}>{t.status}</span>
-                  </td>
-                  <td>
-                    <button>View</button>
-                    <button className="danger">Close</button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
-        {/* FAQs */}
-        <div className="faq-section">
-          <h3>FAQs & Help</h3>
-          <ul>
-            {faqs.map((f, i) => (
-              <li key={i}>
-                <b>{f.q}</b>
-                <p>{f.a}</p>
-              </li>
-            ))}
-          </ul>
-          <button>Add FAQ</button>
+        <div className="chat-footer">
+          <input
+            type="text"
+            placeholder={`Message ${selectedUser.name}...`}
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && handleSend()}
+          />
+          <button onClick={handleSend}>➤</button>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default AdminMessages
+export default AdminMessages;

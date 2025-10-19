@@ -198,6 +198,187 @@ body.dark-mode .danger-zone {
   background: #1e293b;
   border: 1px solid #dc2626;
 }
+.settings-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.tab-btn {
+  background: #e2e8f0;
+  color: #1e293b;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tab-btn.active {
+  background: #2563eb;
+  color: #fff;
+}
+
+.tab-btn:hover {
+  background: #3b82f6;
+  color: #fff;
+}
+/* --- EXISTING STYLES ABOVE --- */
+
+/* HELP & SUPPORT STYLING */
+.help-container {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+  transition: all 0.3s ease;
+}
+
+.help-container h2 {
+  text-align: center;
+  color: #1e293b;
+  margin-bottom: 1rem;
+}
+
+.help-container .intro {
+  text-align: center;
+  font-size: 0.95rem;
+  color: #475569;
+  margin-bottom: 2rem;
+}
+
+/* FAQ SECTION */
+.faq-section {
+  margin-bottom: 2.5rem;
+}
+
+.faq-section h3 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: #1e293b;
+}
+
+.faq-item {
+  background: #f8fafc;
+  border-radius: 10px;
+  margin-bottom: 0.8rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border: 1px solid #e2e8f0;
+}
+
+.faq-item.active {
+  border-color: #2563eb;
+  background: #f1f5ff;
+}
+
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 1rem;
+  text-align: left;
+  cursor: pointer;
+  font-weight: 500;
+  color: #1e293b;
+  font-size: 0.95rem;
+}
+
+.faq-icon {
+  font-size: 1.2rem;
+  color: #2563eb;
+  transition: transform 0.3s ease;
+}
+
+.faq-answer {
+  overflow: hidden;
+  transition: all 0.4s ease;
+  padding: 0 1rem;
+  font-size: 0.9rem;
+  color: #475569;
+}
+
+/* CONTACT SUPPORT */
+.contact-support {
+  background: #f8fafc;
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+}
+
+.contact-support h3 {
+  color: #1e293b;
+  margin-bottom: 1rem;
+}
+
+.contact-support ul {
+  list-style: none;
+  padding: 0;
+}
+
+.contact-support li {
+  margin-bottom: 0.6rem;
+  font-size: 0.95rem;
+}
+
+.contact-support a {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.contact-support a:hover {
+  text-decoration: underline;
+}
+
+/* REPORT ISSUE */
+.report-issue {
+  background: #f8fafc;
+  padding: 1.5rem;
+  border-radius: 10px;
+}
+
+.report-issue h3 {
+  margin-bottom: 1rem;
+  color: #1e293b;
+}
+
+.report-issue input,
+.report-issue textarea {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  margin-bottom: 1rem;
+}
+
+.report-issue input:focus,
+.report-issue textarea:focus {
+  border-color: #2563eb;
+  outline: none;
+}
+
+.submit-btn {
+  display: inline-block;
+  background: #2563eb;
+  color: #ffffff;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background 0.3s ease;
+}
+
+.submit-btn:hover {
+  background: #1d4ed8;
+}
+
+/* RESPONSIVE DESIGN */
 
 @media (max-width: 600px) {
   .settings-container h2{
@@ -211,4 +392,45 @@ body.dark-mode .danger-zone {
   .profile-info h3 {
     font-size: 1rem;
   }
+}
+@media (max-width: 768px) {
+  .help-container {
+    padding: 1.5rem;
+  }
+
+  .faq-question {
+    font-size: 0.9rem;
+  }
+
+  .contact-support,
+  .report-issue {
+    padding: 1rem;
+  }
+  .settings-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+}
+@media (max-width: 414px) {
+  .tab-btn {
+  background: #e2e8f0;
+  color: #1e293b;
+  border: none;
+  padding: 0.4rem 1.5rem;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+}
+@media (max-width: 390px) {
+   .settings-tabs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
 }

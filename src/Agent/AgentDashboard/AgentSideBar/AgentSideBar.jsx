@@ -99,11 +99,6 @@ const AgentSideBar = () => {
               <FaBell /> Notifications
             </NavLink>
           </li>
-          <li>
-            <NavLink to="/agentdashboard/helpsupport" className="link">
-              <FaQuestionCircle /> Help & Support
-            </NavLink>
-          </li>
         </ul>
 
         {/* Logout */}

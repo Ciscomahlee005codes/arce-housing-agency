@@ -1,105 +1,135 @@
-import React, { useState } from "react"
-import "./AdminSettings.css"
-import { FaChevronDown, FaChevronUp, FaCloudDownloadAlt, FaUpload, FaShieldAlt, FaBell, FaCogs } from "react-icons/fa"
+import React, { useState } from "react";
+import "./AdminSettings.css";
 
 const AdminSettings = () => {
-  const [openSection, setOpenSection] = useState(null)
+  const [maintenanceMode, setMaintenanceMode] = useState(false);
+  const [allowRegistration, setAllowRegistration] = useState(true);
+  const [theme, setTheme] = useState("light");
+  const [notifications, setNotifications] = useState({
+    email: true,
+    sms: false,
+    system: true,
+  });
 
-  const toggleSection = (section) => {
-    setOpenSection(openSection === section ? null : section)
-  }
+  const handleSave = () => {
+    alert("✅ Settings saved successfully!");
+  };
 
   return (
-    <div className="settings-container">
-      <h2>System Settings</h2>
+    <div className="admin-settings-container">
+      <h2 className="page-title">⚙️ Admin Settings</h2>
 
-      {/* General Settings */}
-      <div className="settings-section">
-        <div className="section-header" onClick={() => toggleSection("general")}>
-          <FaCogs /> <span>General Settings</span>
-          {openSection === "general" ? <FaChevronUp /> : <FaChevronDown />}
-        </div>
-        {openSection === "general" && (
-          <div className="section-body">
-            <form>
-              <label>App Name</label>
-              <input type="text" placeholder="Enter app name" />
-
-              <label>Brand Logo</label>
-              <input type="file" />
-
-              <label>Support Email</label>
-              <input type="email" placeholder="support@example.com" />
-
-              <button type="submit">Save Changes</button>
-            </form>
+      <div className="settings-grid">
+        {/* System Settings */}
+        <div className="settings-card">
+          <h3>System Controls</h3>
+          <div className="setting-item">
+            <label>Maintenance Mode</label>
+            <label className="switch">
+              <input
+                type="checkbox"
+                checked={maintenanceMode}
+                onChange={() => setMaintenanceMode(!maintenanceMode)}
+              />
+              <span className="slider"></span>
+            </label>
           </div>
-        )}
-      </div>
 
-      {/* Notification Preferences */}
-      <div className="settings-section">
-        <div className="section-header" onClick={() => toggleSection("notifications")}>
-          <FaBell /> <span>Notification Preferences</span>
-          {openSection === "notifications" ? <FaChevronUp /> : <FaChevronDown />}
-        </div>
-        {openSection === "notifications" && (
-          <div className="section-body">
-            <label>
-              <input type="checkbox" /> Email Notifications
+          <div className="setting-item">
+            <label>Allow User Registration</label>
+            <label className="switch">
+              <input
+                type="checkbox"
+                checked={allowRegistration}
+                onChange={() => setAllowRegistration(!allowRegistration)}
+              />
+              <span className="slider"></span>
             </label>
-            <label>
-              <input type="checkbox" /> SMS Notifications
-            </label>
-            <label>
-              <input type="checkbox" /> Push Notifications
-            </label>
-            <button type="button">Update Preferences</button>
           </div>
-        )}
-      </div>
-
-      {/* Security Settings */}
-      <div className="settings-section">
-        <div className="section-header" onClick={() => toggleSection("security")}>
-          <FaShieldAlt /> <span>Security</span>
-          {openSection === "security" ? <FaChevronUp /> : <FaChevronDown />}
         </div>
-        {openSection === "security" && (
-          <div className="section-body">
-            <label>
-              <input type="checkbox" /> Enable Two-Factor Authentication
-            </label>
-            <label>Admin Roles</label>
-            <select>
-              <option>Super Admin</option>
-              <option>Manager</option>
-              <option>Support Staff</option>
+
+        {/* Theme Settings */}
+        <div className="settings-card">
+          <h3>Theme & Appearance</h3>
+          <div className="setting-item">
+            <label>Default Theme</label>
+            <select
+              value={theme}
+              onChange={(e) => setTheme(e.target.value)}
+              className="select-input"
+            >
+              <option value="light">🌞 Light Mode</option>
+              <option value="dark">🌚 Dark Mode</option>
+              <option value="blue">💙 Blue Accent</option>
+              <option value="green">💚 Green Accent</option>
             </select>
-            <button type="button">Save Security Settings</button>
           </div>
-        )}
+        </div>
+
+        {/* Notification Settings */}
+        <div className="settings-card">
+          <h3>Notifications</h3>
+          <div className="checkbox-group">
+            <label>
+              <input
+                type="checkbox"
+                checked={notifications.email}
+                onChange={() =>
+                  setNotifications({
+                    ...notifications,
+                    email: !notifications.email,
+                  })
+                }
+              />
+              Email Alerts
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                checked={notifications.sms}
+                onChange={() =>
+                  setNotifications({
+                    ...notifications,
+                    sms: !notifications.sms,
+                  })
+                }
+              />
+              SMS Alerts
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                checked={notifications.system}
+                onChange={() =>
+                  setNotifications({
+                    ...notifications,
+                    system: !notifications.system,
+                  })
+                }
+              />
+              System Notifications
+            </label>
+          </div>
+        </div>
+
+        {/* Data Management */}
+        <div className="settings-card">
+          <h3>Data Management</h3>
+          <div className="data-buttons">
+            <button className="danger">🗑 Clear Logs</button>
+            <button className="secondary">💾 Backup Data</button>
+            <button className="danger-outline">🔄 Reset System</button>
+          </div>
+        </div>
       </div>
 
-      {/* Backup & Export */}
-      <div className="settings-section">
-        <div className="section-header" onClick={() => toggleSection("backup")}>
-          <FaCloudDownloadAlt /> <span>Backup & Export</span>
-          {openSection === "backup" ? <FaChevronUp /> : <FaChevronDown />}
-        </div>
-        {openSection === "backup" && (
-          <div className="section-body">
-            <button className="backup-btn">
-              <FaUpload /> Backup Now
-            </button>
-            <button className="export-btn">
-              <FaCloudDownloadAlt /> Export Data
-            </button>
-          </div>
-        )}
+      <div className="save-container">
+        <button className="save-btn" onClick={handleSave}>
+          💾 Save Changes
+        </button>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default AdminSettings
+export default AdminSettings;

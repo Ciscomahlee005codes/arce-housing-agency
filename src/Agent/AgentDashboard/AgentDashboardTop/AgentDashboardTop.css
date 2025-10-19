@@ -162,8 +162,8 @@
     display: none;
   }
     .search-bar {
-  transform: translateX(20%); /* move slightly left */
-  width: 150%;
+  transform: translateX(10%); /* move slightly left */
+  width: 100%;
   max-width: 1000px;
   display: flex;
   align-items: center;
@@ -176,7 +176,7 @@
 }
 @media (max-width: 360px) {
      .search-bar {
-  transform: translateX(20%); /* move slightly left */
+  transform: translateX(10%); /* move slightly left */
   width: 120%;
   max-width: 1000px;
   display: flex;

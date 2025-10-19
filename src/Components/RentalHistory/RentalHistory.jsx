@@ -21,7 +21,6 @@ const RentalHistory = () => {
       rentalStatus: "—",
       propertyName: "Sunrise Villa",
       location: "Ikoyi",
-      flatType: "3 Bedroom",
       agent: "Agent Tunde",
     },
     {
@@ -31,7 +30,6 @@ const RentalHistory = () => {
       rentalStatus: "Not Rented",
       propertyName: "Cozy Nest",
       location: "Lekki",
-      flatType: "Studio",
       agent: "Agent Rose",
     },
     {
@@ -41,7 +39,6 @@ const RentalHistory = () => {
       rentalStatus: "—",
       propertyName: "Royal Court",
       location: "Ajah",
-      flatType: "Mini Flat",
       agent: "Agent Emeka",
     },
   ];
@@ -183,7 +180,6 @@ const RentalHistory = () => {
                   <th>Rental Status</th>
                   <th>Property</th>
                   <th>Location</th>
-                  <th>Flat Type</th>
                   <th>Agent</th>
                   <th>Action</th>
                 </tr>
@@ -210,7 +206,6 @@ const RentalHistory = () => {
                       </td>
                       <td data-label="Property">{item.propertyName}</td>
                       <td data-label="Location">{item.location}</td>
-                      <td data-label="Apartment">{item.flatType}</td>
                       <td data-label="Agent">{item.agent}</td>
                       <td>
                         {item.tourStatus === "Completed" &&

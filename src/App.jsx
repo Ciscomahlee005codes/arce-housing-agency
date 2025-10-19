@@ -1,42 +1,21 @@
-import React, { Suspense } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
-import NavBar from './Components/NavBar/NavBar';
-import Footer from './Components/Footer/Footer';
-import Loader from './Components/Loader/Loader'; 
-import DelayLoader from './Components/Loader/DelayLoader'; 
-import ScrollToTop from './Components/ScrollTop/ScrollToTop';
-import LogInPage from './Pages/LogInPage/LogInPage';
+import React, { Suspense } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
+import NavBar from "./Components/NavBar/NavBar";
+import Footer from "./Components/Footer/Footer";
+import Loader from "./Components/Loader/Loader";
+import DelayLoader from "./Components/Loader/DelayLoader";
+import ScrollToTop from "./Components/ScrollTop/ScrollToTop";
+import LogInPage from "./Pages/LogInPage/LogInPage";
 
-import ProfileSettings from './Components/ProfileSettings/ProfileSettings';
-import Notification from './Components/Notification/Notification';
-import SharedRoomDetails from './Components/SharedRoomDetails/SharedRoomDetails';
-import HostelDetails from './Components/HostelDetails/HostelDetails';
-import UserChats from './Components/UserChats/UserChats';
-import ReferTenant from './Components/ReferTenant/ReferTenant';
+// Regular Components
+import ProfileSettings from "./Components/ProfileSettings/ProfileSettings";
+import Notification from "./Components/Notification/Notification";
+import SharedRoomDetails from "./Components/SharedRoomDetails/SharedRoomDetails";
+import HostelDetails from "./Components/HostelDetails/HostelDetails";
+import UserChats from "./Components/UserChats/UserChats";
+import ReferTenant from "./Components/ReferTenant/ReferTenant";
 
-// Agent Dashboard
-import AgentDashboardHomePage from './AgentDashboardPages/AgentDashboardHomePage/AgentDashboardHomePage';
-import AgentPropertiesPage from './AgentDashboardPages/AgentPropertiesPage/AgentPropertiesPage';
-import AgentRentalTourPage from './AgentDashboardPages/AgentRentalTourPage/AgentRentalTourPage';
-import AgentRequestPage from './AgentDashboardPages/AgentRequestPage/AgentRequestPage';
-import AgentNotificationPage from './AgentDashboardPages/AgentNotificationPage/AgentNotificationPage';
-import AgentProfilePage from './AgentDashboardPages/AgentProfilePage/AgentProfilePage';
-import HelpSupportPage from './AgentDashboardPages/HelpSupportPage/HelpSupportPage';
-import AgentMessagesPages from './AgentDashboardPages/AgentMessagesPages/AgentMessagesPages';
-
-// Admin Dashboard
-import AdminHomePage from './Admin/AdminDashboardPages/AdminHomepage/AdminHomePage';
-import AdminUserPage from './Admin/AdminDashboardPages/AdminUserPage/AdminUserPage';
-import AdminAgentPage from './Admin/AdminDashboardPages/AdminAgentPage/AdminAgentPage';
-import AdminPropertyPages from './Admin/AdminDashboardPages/AdminPropertyPages/AdminPropertyPages';
-import AdminNotificationPages from './Admin/AdminDashboardPages/AdminNotificationPages/AdminNotificationPages';
-import AdminSettingsPage from './Admin/AdminDashboardPages/AdminSettingsPage/AdminSettingsPage';
-import AdminReportPages from './Admin/AdminDashboardPages/AdminReportPages/AdminReportPages';
-import AdminPaymentPage from './Admin/AdminDashboardPages/AdminPaymentPage/AdminPaymentPage';
-import AdminMessagePage from './Admin/AdminDashboardPages/AdminMessagePage/AdminMessagePage';
-import AdminLogin from './Admin/AdminDashboard/AdminLogin/AdminLogin';
-
-// Lazy-loaded pages
+// Lazy-loaded Public Pages
 const Home = DelayLoader(() => import("./Pages/Home/Home"));
 const ViewHomes = DelayLoader(() => import("./Pages/VHomes/ViewHomes"));
 const About = DelayLoader(() => import("./Pages/AboutUs/About"));
@@ -48,18 +27,80 @@ const LodgeDetails = DelayLoader(() => import("./Components/LodgeDetails/LodgeDe
 const FaqPage = DelayLoader(() => import("./Pages/FaqPage/FaqPage"));
 const TestPage = DelayLoader(() => import("./Pages/TestPage/TestPage"));
 
+// 🧑‍💼 Lazy-loaded Agent Dashboard Pages
+const AgentDashboardHomePage = DelayLoader(() =>
+  import("./Agent/AgentDashboardPages/AgentDashboardHomePage/AgentDashboardHomePage")
+);
+const AgentPropertiesPage = DelayLoader(() =>
+  import("./Agent/AgentDashboardPages/AgentPropertiesPage/AgentPropertiesPage")
+);
+const AgentRentalTourPage = DelayLoader(() =>
+  import("./Agent/AgentDashboardPages/AgentRentalTourPage/AgentRentalTourPage")
+);
+const AgentRequestPage = DelayLoader(() =>
+  import("./Agent/AgentDashboardPages/AgentRequestPage/AgentRequestPage")
+);
+const AgentNotificationPage = DelayLoader(() =>
+  import("./Agent/AgentDashboardPages/AgentNotificationPage/AgentNotificationPage")
+);
+const AgentProfilePage = DelayLoader(() =>
+  import("./Agent/AgentDashboardPages/AgentProfilePage/AgentProfilePage")
+);
+const HelpSupportPage = DelayLoader(() =>
+  import("./Agent/AgentDashboardPages/HelpSupportPage/HelpSupportPage")
+);
+const AgentMessagesPages = DelayLoader(() =>
+  import("./Agent/AgentDashboardPages/AgentMessagesPages/AgentMessagesPages")
+);
+
+// 👑 Lazy-loaded Admin Dashboard Pages
+const AdminHomePage = DelayLoader(() =>
+  import("./Admin/AdminDashboardPages/AdminHomepage/AdminHomePage")
+);
+const AdminUserPage = DelayLoader(() =>
+  import("./Admin/AdminDashboardPages/AdminUserPage/AdminUserPage")
+);
+const AdminAgentPage = DelayLoader(() =>
+  import("./Admin/AdminDashboardPages/AdminAgentPage/AdminAgentPage")
+);
+const AdminPropertyPages = DelayLoader(() =>
+  import("./Admin/AdminDashboardPages/AdminPropertyPages/AdminPropertyPages")
+);
+const AdminNotificationPages = DelayLoader(() =>
+  import("./Admin/AdminDashboardPages/AdminNotificationPages/AdminNotificationPages")
+);
+const AdminSettingsPage = DelayLoader(() =>
+  import("./Admin/AdminDashboardPages/AdminSettingsPage/AdminSettingsPage")
+);
+const AdminReportPages = DelayLoader(() =>
+  import("./Admin/AdminDashboardPages/AdminReportPages/AdminReportPages")
+);
+const AdminPaymentPage = DelayLoader(() =>
+  import("./Admin/AdminDashboardPages/AdminPaymentPage/AdminPaymentPage")
+);
+const AdminMessagePage = DelayLoader(() =>
+  import("./Admin/AdminDashboardPages/AdminMessagePage/AdminMessagePage")
+);
+const AdminLogin = DelayLoader(() =>
+  import("./Admin/AdminDashboard/AdminLogin/AdminLogin")
+);
+
 function App() {
   const location = useLocation();
 
   // Define all routes where NavBar & Footer should be hidden
   const hiddenRoutes = [
-    "/login",
-    "/agentdashboard/home", "/agentdashboard/property", "/agentdashboard/rentalpage",
-    "/agentdashboard/request", "/agentdashboard/notification", "/agentdashboard/profile",
-    "/agentdashboard/helpsupport", "/agentdashboard/messages", "/admin/login",
-    "/admindashboard/home", "/admindashboard/usermanagement", "/admindashboard/adminmanagement",
-    "/admindashboard/properties", "/admindashboard/notification", "/admindashboard/settings",
-    "/admindashboard/reports", "/admindashboard/payment", "/admindashboard/messages"
+    "/login", "/agentdashboard/home","/agentdashboard/property",
+    "/agentdashboard/rentalpage","/agentdashboard/request",
+    "/agentdashboard/notification", "/agentdashboard/profile",
+    "/agentdashboard/helpsupport","/agentdashboard/messages",
+    // Admin Routes
+     "/admin/login",
+    "/admindashboard/home", "/admindashboard/usermanagement",
+    "/admindashboard/adminmanagement","/admindashboard/properties",
+    "/admindashboard/notification",
+    "/admindashboard/settings", "/admindashboard/reports",
+    "/admindashboard/payment","/admindashboard/messages",
   ];
 
   const hideNavAndFooter = hiddenRoutes.includes(location.pathname.toLowerCase());

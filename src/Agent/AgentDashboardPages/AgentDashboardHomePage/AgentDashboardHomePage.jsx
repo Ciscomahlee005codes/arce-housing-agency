@@ -1,9 +1,9 @@
 import React from 'react'
 import "./AgentDashboardHomePage.css"
 
-import Agents from '../../AgentDashboard/AgentChats/Agents'
+import AgentChats from '../../AgentDashboard/AgentChats/AgentChats'
 import AgentSideBar from '../../AgentDashboard/AgentSideBar/AgentSideBar'
-import AgentDashboardTop from '../../AgentDashboard/AgentDashboardHome/AgentDashboardTop'
+import AgentDashboardTop from '../../AgentDashboard/AgentDashboardTop/AgentDashboardTop'
 import AgentActivity from '../../AgentDashboard/AgentActivity/AgentActivity'
 import AgentProperties from '../../AgentDashboard/AgentProperties/AgentProperties'
 import AgentRequest from '../../AgentDashboard/AgentRequest/AgentRequest'
@@ -18,7 +18,7 @@ const AgentDashboardHomePage = () => {
         <AgentProperties />
         <div className="middle-level">
           <AgentRequest />
-          <Agents />
+          <AgentChats />
         </div>
       </div>
     </div>

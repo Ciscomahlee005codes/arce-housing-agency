@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { agents_list } from "../../../User_Data";
+import { agents_list } from "../../../../User_Data";
 import { FiSearch } from "react-icons/fi";
 import { IoMdNotifications } from "react-icons/io";
 import { MdMessage } from "react-icons/md";
@@ -68,7 +68,6 @@ const AgentRentals = () => {
                 <th>Rental Status</th>
                 <th>Property</th>
                 <th>Location</th>
-                <th>Flat Type</th>
                 <th>Status</th>
               </tr>
             </thead>
@@ -84,7 +83,7 @@ const AgentRentals = () => {
                     />
                     <div>
                       <strong>{tenant.name}</strong>
-                      <p>{tenant.email}</p>
+                    
                     </div>
                   </td>
                   <td>{tenant.tourDate || "-"}</td>
@@ -92,7 +91,6 @@ const AgentRentals = () => {
                   <td>{tenant.rentalStatus || "-"}</td>
                   <td>{tenant.propertyName || "-"}</td>
                   <td>{tenant.location || "-"}</td>
-                  <td>{tenant.flatType || "-"}</td>
                   <td>
                     <span className={getStatusClass(tenant.status)}>
                       {tenant.status}
