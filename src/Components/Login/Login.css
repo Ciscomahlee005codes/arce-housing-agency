@@ -79,6 +79,19 @@ body {
   color: #13118a;
   font-weight: bold;
 }
+.forgot-link {
+  text-align: right;
+  color: #13118a;
+  font-size: 0.85rem;
+  margin-top: -0.5rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.forgot-link:hover {
+  color: #0e0ba5;
+  text-decoration: underline;
+}
 
 @media (max-width: 768px) {
   .auth-container {

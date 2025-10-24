@@ -14,6 +14,8 @@ import SharedRoomDetails from "./Components/SharedRoomDetails/SharedRoomDetails"
 import HostelDetails from "./Components/HostelDetails/HostelDetails";
 import UserChats from "./Components/UserChats/UserChats";
 import ReferTenant from "./Components/ReferTenant/ReferTenant";
+import ForgotPassword from "./Components/ForgotPassword/ForgotPassword";
+import OtpVerification from "./Components/OtpVerification/OtpVerification";
 
 // Lazy-loaded Public Pages
 const Home = DelayLoader(() => import("./Pages/Home/Home"));
@@ -94,6 +96,7 @@ function App() {
     "/agentdashboard/rentalpage","/agentdashboard/request",
     "/agentdashboard/notification", "/agentdashboard/profile",
     "/agentdashboard/helpsupport","/agentdashboard/messages",
+    "/forgot-password", "/otpverification",
     // Admin Routes
      "/admin/login",
     "/admindashboard/home", "/admindashboard/usermanagement",
@@ -132,6 +135,8 @@ function App() {
           <Route path="/usernotification" element={<Notification />} />
           <Route path="/userchats" element={<UserChats />} />
           <Route path="/referTenants" element={<ReferTenant />} />
+          <Route path="/forgot-password" element={<ForgotPassword/>} />
+          <Route path="/otpverification" element={<OtpVerification/>} />
 
           {/* Agent Dashboard Routes */}
           <Route path="/agentdashboard/home" element={<AgentDashboardHomePage />} />
